@@ -39,6 +39,12 @@ dofile(gamepath .. "hud.lua")
 dofile(gamepath .. "knockback.lua")
 dofile(gamepath .. "async.lua")
 dofile(gamepath .. "death_screen.lua")
+dofile(gamepath .. "mbr_time.lua")
+dofile(gamepath .. "mbr_survival.lua")
+dofile(gamepath .. "mbr_weather.lua")
+dofile(gamepath .. "mbr_particles.lua")
+dofile(gamepath .. "mbr_npcs.lua")
+dofile(gamepath .. "mbr_marriage.lua")
 
 core.after(0, builtin_shared.cache_content_ids)
 
