@@ -30,6 +30,7 @@ read_globals = {
 globals = {
 	"core",
 	"gamedata",
+	"mbr",
 	os = { fields = { "tempfolder" } },
 	"_",
 }
@@ -102,5 +103,21 @@ files["builtin/common/tests"] = {
 		"describe",
 		"it",
 		"assert",
+		"before_each",
+		"after_each",
+		"setup",
+		"teardown",
+	},
+}
+
+files["builtin/game/tests"] = {
+	read_globals = {
+		"describe",
+		"it",
+		"assert",
+		"before_each",
+		"after_each",
+		"setup",
+		"teardown",
 	},
 }
