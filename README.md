@@ -23,8 +23,10 @@ with dynamic seasons and weather.
 | Particle effects for actions | ✅ Implemented |
 | 7 unique NPCs with relationships & gifts | ✅ Implemented |
 | Marriage & family system | ✅ Implemented |
+| Diablo-style loot system (5 rarity tiers, random affixes) | ✅ Implemented |
+| Quality-based crafting (material quality → output quality) | ✅ Implemented |
 | Farming, fishing, mining | 🔜 Planned |
-| Crafting & shop UI | 🔜 Planned |
+| Shop & economy | 🔜 Planned |
 | Multi-village world (8 biomes) | 🔜 Planned |
 | Quest system | 🔜 Planned |
 | Pet companion system | 🔜 Planned |

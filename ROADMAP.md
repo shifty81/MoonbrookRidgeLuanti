@@ -59,6 +59,28 @@ These systems form the foundation that every other feature depends on.
   - [x] Child interactions (play, gift, teach, hug)
   - [x] `/family` and `/propose` chat commands
 
+- [x] **Diablo-Style Loot System** (`mbr_loot.lua`)
+  - [x] 5 rarity tiers (Common, Magic, Rare, Epic, Legendary) with colour coding
+  - [x] Random affix generation (16 affix types: offensive, defensive, utility)
+  - [x] Per-rarity affix count scaling (0 → 5 affixes)
+  - [x] Loot table registration API (`register_loot_table`)
+  - [x] Loot drop helper (`drop_loot`) with weighted entry & rarity selection
+  - [x] Item metadata serialisation (`apply_to_itemstack` / `read_from_itemstack`)
+  - [x] Unidentified item mechanic with Identify Scroll item
+  - [x] `/iteminfo` chat command to inspect held item stats
+
+- [x] **Quality-Based Crafting System** (`mbr_crafting.lua`)
+  - [x] 5 material quality tiers (Poor → Normal → Fine → Superior → Masterwork)
+  - [x] Quality carry-over: input material quality determines output quality
+  - [x] Stat multipliers per tier (0.75× Poor → 2.0× Masterwork)
+  - [x] Material registration API with quality metadata
+  - [x] Recipe registration API with base stats & tool capabilities
+  - [x] Crafting formspec UI with recipe list & ingredient display
+  - [x] Loot-system integration: crafted items also receive random affixes
+  - [x] Starter materials (wood, stone, copper, iron, gold, crystal)
+  - [x] Starter recipes (swords, pickaxes, axe, hoe at multiple tiers)
+  - [x] `/craft` chat command to open crafting station
+
 ---
 
 ## Phase 2 — Farming & Resource Gathering
@@ -95,8 +117,9 @@ These systems form the foundation that every other feature depends on.
 
 ## Phase 3 — Economy & Crafting
 
+- [x] **Crafting System (Core)** — *see Phase 1 above*
 - [ ] **Crafting System (Enhanced UI)**
-  - [ ] Crafting station node with formspec
+  - [ ] Crafting station placeable node (currently chat-command only)
   - [ ] Recipe discovery / unlock system
   - [ ] Category tabs (food, tools, furniture, decor, potions)
   - [ ] Craft-queue animation / progress
