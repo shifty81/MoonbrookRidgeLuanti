@@ -1,11 +1,42 @@
 <div align="center">
     <img src="textures/base/pack/logo.png" width="32%">
-    <h1>Luanti (formerly Minetest)</h1>
-    <img src="https://github.com/luanti-org/luanti/workflows/build/badge.svg" alt="Build Status">
-    <a href="https://hosted.weblate.org/engage/minetest/?utm_source=widget"><img src="https://hosted.weblate.org/widgets/minetest/-/svg-badge.svg" alt="Translation status"></a>
-    <a href="https://www.gnu.org/licenses/old-licenses/lgpl-2.1.en.html"><img src="https://img.shields.io/badge/license-LGPLv2.1%2B-blue.svg" alt="License"></a>
+    <h1>🌙 MoonBrook Ridge</h1>
+    <p><em>A farming &amp; life-simulation game built on the Luanti engine</em></p>
 </div>
 <br>
+
+## About MoonBrook Ridge
+
+MoonBrook Ridge is a cozy farming, life-simulation, and adventure game built
+on the [Luanti](https://www.luanti.org/) (formerly Minetest) voxel engine.
+Grow crops, raise animals, befriend villagers, explore caves, tame pets, and
+build the homestead of your dreams — all inside a procedurally generated world
+with dynamic seasons and weather.
+
+### Current Features
+
+| System | Status |
+|--------|--------|
+| Time & Seasons (4 seasons, 28-day cycles) | ✅ Implemented |
+| Hunger & Thirst survival mechanics | ✅ Implemented |
+| Dynamic weather (rain, snow, storms, fog) | ✅ Implemented |
+| Particle effects for actions | ✅ Implemented |
+| 7 unique NPCs with relationships & gifts | ✅ Implemented |
+| Marriage & family system | ✅ Implemented |
+| Diablo-style loot system (5 rarity tiers, random affixes) | ✅ Implemented |
+| Quality-based crafting (material quality → output quality) | ✅ Implemented |
+| Farming, fishing, mining | 🔜 Planned |
+| Shop & economy | 🔜 Planned |
+| Multi-village world (8 biomes) | 🔜 Planned |
+| Quest system | 🔜 Planned |
+| Pet companion system | 🔜 Planned |
+| Combat & player progression | 🔜 Planned |
+
+👉 **See [ROADMAP.md](ROADMAP.md) for the full development plan.**
+
+---
+
+## Luanti Engine
 
 Luanti is a free open-source voxel game engine with easy modding and game creation.
 
