@@ -103,6 +103,10 @@ files["builtin/common/tests"] = {
 		"describe",
 		"it",
 		"assert",
+		"before_each",
+		"after_each",
+		"setup",
+		"teardown",
 	},
 }
 
@@ -111,5 +115,9 @@ files["builtin/game/tests"] = {
 		"describe",
 		"it",
 		"assert",
+		"before_each",
+		"after_each",
+		"setup",
+		"teardown",
 	},
 }
