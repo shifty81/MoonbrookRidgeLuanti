@@ -1,0 +1,37 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Launch Client (Debug)",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/msvc-x64-debug/bin/Debug/luanti.exe",
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "preLaunchTask": "Build Debug"
+        },
+        {
+            "name": "Launch Server (Debug)",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/msvc-x64-debug/bin/Debug/luantiserver.exe",
+            "args": [
+                "--gameid", "devtest",
+                "--worldname", "test_world"
+            ],
+            "cwd": "${workspaceFolder}",
+            "preLaunchTask": "Build Debug"
+        },
+        {
+            "name": "Run Unit Tests (Debug)",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/msvc-x64-debug/bin/Debug/luanti.exe",
+            "args": [
+                "--run-unittests"
+            ],
+            "cwd": "${workspaceFolder}",
+            "preLaunchTask": "Build Debug"
+        }
+    ]
+}

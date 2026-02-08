@@ -32,6 +32,8 @@ gtags.files
 # Visual Studio Code & plugins
 .vscode/*
 !.vscode/extensions.json
+!.vscode/tasks.json
+!.vscode/launch.json
 build/.cmake/
 # Fleet
 .fleet

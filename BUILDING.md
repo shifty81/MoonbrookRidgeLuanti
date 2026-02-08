@@ -11,9 +11,10 @@ graphics.
 
 1. [Quick-Start with Docker (server only)](#1-quick-start-with-docker-server-only)
 2. [Native Linux Build (client + server)](#2-native-linux-build-client--server)
-3. [Running the Game](#3-running-the-game)
-4. [Running Tests](#4-running-tests)
-5. [Troubleshooting](#5-troubleshooting)
+3. [Windows Build with Visual Studio](#3-windows-build-with-visual-studio)
+4. [Running the Game](#4-running-the-game)
+5. [Running Tests](#5-running-tests)
+6. [Troubleshooting](#6-troubleshooting)
 
 ---
 
@@ -129,9 +130,63 @@ Run `cmake . -LH` to see all available options.
 
 ---
 
-## 3. Running the Game
+## 3. Windows Build with Visual Studio
 
-### 3.1 Singleplayer (graphical client)
+The repository includes **CMake presets** that automate the entire
+configure → build → debug cycle on Windows. Visual Studio 2022 and VS Code
+both detect these presets automatically.
+
+### 3.1 Prerequisites
+
+1. **Visual Studio 2022** (Community or higher) with the **Desktop development
+   with C++** workload.
+2. **vcpkg** — clone and bootstrap it, then set the `VCPKG_ROOT` environment
+   variable:
+
+```powershell
+git clone https://github.com/microsoft/vcpkg.git C:\vcpkg
+cd C:\vcpkg
+.\bootstrap-vcpkg.bat
+[System.Environment]::SetEnvironmentVariable('VCPKG_ROOT', 'C:\vcpkg', 'User')
+```
+
+Restart your terminal or IDE after setting `VCPKG_ROOT`.
+
+### 3.2 Build with Visual Studio 2022
+
+1. Open Visual Studio → **File → Open → Folder…** → select this repo.
+2. Visual Studio detects `CMakePresets.json` and shows available presets in the
+   toolbar.
+3. Select **MSVC x64 Debug** (or another preset) from the configuration
+   dropdown.
+4. Press **Ctrl+Shift+B** to build.
+5. Press **F5** to launch the client under the debugger.
+
+### 3.3 Build with VS Code
+
+1. Install the **C/C++ Extension Pack** extension.
+2. Open the repository folder. CMake Tools picks up the presets automatically.
+3. Select a configure preset from the status bar.
+4. Use the included `tasks.json` / `launch.json`:
+   - **Ctrl+Shift+B** → Build Debug
+   - **F5** → Launch Client (Debug) with breakpoints
+
+### 3.4 Build from the command line (PowerShell)
+
+```powershell
+cmake --preset msvc-x64-debug
+cmake --build --preset msvc-x64-debug
+.\build\msvc-x64-debug\bin\Debug\luanti.exe --run-unittests
+```
+
+For full details and additional presets, see
+[doc/compiling/windows.md](doc/compiling/windows.md).
+
+---
+
+## 4. Running the Game
+
+### 4.1 Singleplayer (graphical client)
 
 ```bash
 ./bin/luanti
@@ -142,7 +197,7 @@ This opens the Luanti main menu.  Select a game — MoonBrook Ridge systems
 through the engine `builtin/game/init.lua`.  You can use **DevTest** as a
 sandbox world that includes basic nodes and tools.
 
-### 3.2 Dedicated Server
+### 4.2 Dedicated Server
 
 ```bash
 # Start a server using the DevTest game
@@ -154,7 +209,7 @@ sandbox world that includes basic nodes and tools.
 
 Connect with a Luanti client to `localhost:30000`.
 
-### 3.3 Verifying MBR Systems Are Loaded
+### 4.3 Verifying MBR Systems Are Loaded
 
 Once in-game, you can verify the MoonBrook Ridge systems with these chat
 commands:
@@ -172,9 +227,9 @@ The HUD should display: season/day/year clock (top-center), weather indicator
 
 ---
 
-## 4. Running Tests
+## 5. Running Tests
 
-### 4.1 Lua Linting (Luacheck)
+### 5.1 Lua Linting (Luacheck)
 
 Luacheck validates all Lua code for errors, undefined globals, and style
 issues.
@@ -190,7 +245,7 @@ luarocks install --local luacheck
 ~/.luarocks/bin/luacheck --config=games/devtest/.luacheckrc games/devtest
 ```
 
-### 4.2 Lua Unit Tests (Busted)
+### 5.2 Lua Unit Tests (Busted)
 
 Busted tests validate pure Lua logic without needing the full engine.  Tests
 live alongside the code they exercise:
@@ -212,7 +267,7 @@ luarocks install --local busted
 ~/.luarocks/bin/busted builtin/game/tests/
 ```
 
-### 4.3 C++ Unit Tests
+### 5.3 C++ Unit Tests
 
 The engine includes C++ unit tests that are compiled when
 `BUILD_UNITTESTS=TRUE` (the default).
@@ -222,7 +277,7 @@ The engine includes C++ unit tests that are compiled when
 ./bin/luanti --run-unittests
 ```
 
-### 4.4 Integration Tests (Multiplayer)
+### 5.4 Integration Tests (Multiplayer)
 
 These spin up a server and client to test game features end-to-end.
 Requires a graphical environment (or `xvfb-run`).
@@ -235,7 +290,7 @@ Requires a graphical environment (or `xvfb-run`).
 xvfb-run ./util/test_singleplayer.sh
 ```
 
-### 4.5 CI Pipeline
+### 5.5 CI Pipeline
 
 GitHub Actions automatically runs all of the above on every push and PR.  The
 workflows are in `.github/workflows/`:
@@ -251,7 +306,7 @@ workflows are in `.github/workflows/`:
 
 ---
 
-## 5. Troubleshooting
+## 6. Troubleshooting
 
 ### Missing dependencies
 
