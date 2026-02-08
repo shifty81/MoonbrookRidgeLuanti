@@ -5,16 +5,22 @@
 </div>
 <br>
 
+---
+
+> **Note:** This is a complete game, not a mod. MoonBrook Ridge is the core game experience, built on top of the powerful Luanti (formerly Minetest) voxel engine. All the farming, life-simulation, and adventure features are fully integrated into the game.
+
+---
+
 ## 🎮 Quick Start
 
-**Want to play MoonBrook Ridge?**
+**Ready to play?**
 
-1. Build the engine from source (see [Compiling](#compiling) section below)
-2. Launch Luanti: `./bin/luanti`
-3. Select **"MoonBrook Ridge"** from the games list
-4. Create a new world and start playing!
+1. Build from source (see [Compiling](#compiling) section below)
+2. Launch the game: `./bin/moonbrook_ridge` (or `moonbrook_ridge.exe` on Windows)
+3. Create a new world - MoonBrook Ridge is the only game!
+4. Start your farming adventure!
 
-📖 See [games/moonbrook_ridge/TESTING.md](games/moonbrook_ridge/TESTING.md) for a full guide to testing all features.
+📖 See [games/moonbrook_ridge/TESTING.md](games/moonbrook_ridge/TESTING.md) for a guide to all features.
 
 ---
 
@@ -50,7 +56,20 @@ with dynamic seasons and weather.
 
 ---
 
-## Luanti Engine
+## Architecture
+
+MoonBrook Ridge is built as a **complete game** on the Luanti engine:
+
+- **Engine**: Luanti 5.16.0 - A powerful, open-source voxel game engine
+- **Game**: MoonBrook Ridge - Fully integrated farming & life simulation
+- **Integration**: All MBR systems (`mbr_time`, `mbr_survival`, `mbr_weather`, etc.) are built directly into the engine's `builtin/game/` core
+- **Content**: Game-specific mods provide blocks, items, NPCs, and world generation
+
+This is **NOT** a mod or game selection - MoonBrook Ridge is the primary game experience. Think of it like Stardew Valley or Minecraft - it's a complete, standalone game that happens to use a powerful voxel engine.
+
+---
+
+## About the Luanti Engine
 
 Luanti is a free open-source voxel game engine with easy modding and game creation.
 

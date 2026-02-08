@@ -1,6 +1,10 @@
-# MoonBrook Ridge Game
+# MoonBrook Ridge
 
-A cozy farming and life-simulation game for Luanti.
+A cozy farming and life-simulation game built on the Luanti engine.
+
+## Overview
+
+**MoonBrook Ridge is a complete, standalone game** - not a mod or game selection. When you build and run MoonBrook Ridge, you're running the full game. All the farming, survival, weather, NPC, and crafting systems are fully integrated into the game's core.
 
 ## Features
 
@@ -14,9 +18,13 @@ A cozy farming and life-simulation game for Luanti.
 
 ## Getting Started
 
-1. Build the Luanti engine from source (see main README.md and BUILDING.md)
-2. Launch Luanti and select "MoonBrook Ridge" from the games list
-3. Create a new world and start playing!
+1. Build MoonBrook Ridge from source (see main [BUILDING.md](../../BUILDING.md))
+2. Launch the game: `./bin/moonbrook_ridge`
+3. Create a new world - the game is ready to play!
+
+## About the Integration
+
+MoonBrook Ridge is **fully integrated** into the game engine:
 
 ## Testing Features
 
