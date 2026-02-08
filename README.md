@@ -5,6 +5,19 @@
 </div>
 <br>
 
+## 🎮 Quick Start
+
+**Want to play MoonBrook Ridge?**
+
+1. Build the engine from source (see [Compiling](#compiling) section below)
+2. Launch Luanti: `./bin/luanti`
+3. Select **"MoonBrook Ridge"** from the games list
+4. Create a new world and start playing!
+
+📖 See [games/moonbrook_ridge/TESTING.md](games/moonbrook_ridge/TESTING.md) for a full guide to testing all features.
+
+---
+
 ## About MoonBrook Ridge
 
 MoonBrook Ridge is a cozy farming, life-simulation, and adventure game built
@@ -17,14 +30,15 @@ with dynamic seasons and weather.
 
 | System | Status |
 |--------|--------|
-| Time & Seasons (4 seasons, 28-day cycles) | ✅ Implemented |
-| Hunger & Thirst survival mechanics | ✅ Implemented |
-| Dynamic weather (rain, snow, storms, fog) | ✅ Implemented |
-| Particle effects for actions | ✅ Implemented |
+| Time & Seasons (4 seasons, 28-day cycles) | ✅ Implemented & Testable |
+| Hunger & Thirst survival mechanics | ✅ Implemented & Testable |
+| Dynamic weather (rain, snow, storms, fog) | ✅ Implemented & Testable |
+| Particle effects for actions | ✅ Implemented & Testable |
 | 7 unique NPCs with relationships & gifts | ✅ Implemented |
 | Marriage & family system | ✅ Implemented |
-| Diablo-style loot system (5 rarity tiers, random affixes) | ✅ Implemented |
-| Quality-based crafting (material quality → output quality) | ✅ Implemented |
+| Diablo-style loot system (5 rarity tiers, random affixes) | ✅ Implemented & Testable |
+| Quality-based crafting (material quality → output quality) | ✅ Implemented & Testable |
+| **Playable game with basic world & items** | ✅ **Ready to Test!** |
 | Farming, fishing, mining | 🔜 Planned |
 | Shop & economy | 🔜 Planned |
 | Multi-village world (8 biomes) | 🔜 Planned |
