@@ -1,0 +1,65 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "CMake Configure (Debug)",
+            "type": "shell",
+            "command": "cmake",
+            "args": [
+                "--preset",
+                "msvc-x64-debug"
+            ],
+            "group": "build",
+            "problemMatcher": []
+        },
+        {
+            "label": "CMake Configure (Release)",
+            "type": "shell",
+            "command": "cmake",
+            "args": [
+                "--preset",
+                "msvc-x64-release"
+            ],
+            "group": "build",
+            "problemMatcher": []
+        },
+        {
+            "label": "Build Debug",
+            "type": "shell",
+            "command": "cmake",
+            "args": [
+                "--build",
+                "--preset",
+                "msvc-x64-debug"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "Build Release",
+            "type": "shell",
+            "command": "cmake",
+            "args": [
+                "--build",
+                "--preset",
+                "msvc-x64-release"
+            ],
+            "group": "build",
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "Run Unit Tests",
+            "type": "shell",
+            "command": "${workspaceFolder}/build/msvc-x64-debug/bin/Debug/luanti.exe",
+            "args": [
+                "--run-unittests"
+            ],
+            "group": "test",
+            "problemMatcher": [],
+            "dependsOn": "Build Debug"
+        }
+    ]
+}

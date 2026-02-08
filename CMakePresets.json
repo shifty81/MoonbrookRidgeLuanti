@@ -36,6 +36,136 @@
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "MinSizeRel"
       }
+    },
+    {
+      "name": "msvc-base",
+      "hidden": true,
+      "description": "Base preset for MSVC builds via Visual Studio",
+      "generator": "Visual Studio 17 2022",
+      "binaryDir": "${sourceDir}/build/${presetName}",
+      "cacheVariables": {
+        "RUN_IN_PLACE": "TRUE",
+        "BUILD_UNITTESTS": "TRUE",
+        "ENABLE_POSTGRESQL": "OFF",
+        "ENABLE_LUAJIT": "TRUE",
+        "REQUIRE_LUAJIT": "TRUE"
+      },
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+    {
+      "name": "msvc-vcpkg-base",
+      "hidden": true,
+      "inherits": "msvc-base",
+      "description": "MSVC base with vcpkg auto-detection",
+      "cacheVariables": {
+        "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake"
+      }
+    },
+    {
+      "name": "msvc-x64-debug",
+      "displayName": "MSVC x64 Debug",
+      "description": "Visual Studio x64 Debug build with vcpkg",
+      "inherits": "msvc-vcpkg-base",
+      "architecture": {
+        "value": "x64",
+        "strategy": "set"
+      }
+    },
+    {
+      "name": "msvc-x64-release",
+      "displayName": "MSVC x64 Release",
+      "description": "Visual Studio x64 Release build with vcpkg",
+      "inherits": "msvc-vcpkg-base",
+      "architecture": {
+        "value": "x64",
+        "strategy": "set"
+      }
+    },
+    {
+      "name": "msvc-x64-relwithdebinfo",
+      "displayName": "MSVC x64 RelWithDebInfo",
+      "description": "Visual Studio x64 Release with debug info and vcpkg",
+      "inherits": "msvc-vcpkg-base",
+      "architecture": {
+        "value": "x64",
+        "strategy": "set"
+      }
+    },
+    {
+      "name": "msvc-x86-debug",
+      "displayName": "MSVC x86 Debug",
+      "description": "Visual Studio x86 Debug build with vcpkg",
+      "inherits": "msvc-vcpkg-base",
+      "architecture": {
+        "value": "Win32",
+        "strategy": "set"
+      },
+      "cacheVariables": {
+        "VCPKG_TARGET_TRIPLET": "x86-windows"
+      }
+    },
+    {
+      "name": "msvc-x86-release",
+      "displayName": "MSVC x86 Release",
+      "description": "Visual Studio x86 Release build with vcpkg",
+      "inherits": "msvc-vcpkg-base",
+      "architecture": {
+        "value": "Win32",
+        "strategy": "set"
+      },
+      "cacheVariables": {
+        "VCPKG_TARGET_TRIPLET": "x86-windows"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "msvc-x64-debug",
+      "displayName": "Build MSVC x64 Debug",
+      "configurePreset": "msvc-x64-debug",
+      "configuration": "Debug"
+    },
+    {
+      "name": "msvc-x64-release",
+      "displayName": "Build MSVC x64 Release",
+      "configurePreset": "msvc-x64-release",
+      "configuration": "Release"
+    },
+    {
+      "name": "msvc-x64-relwithdebinfo",
+      "displayName": "Build MSVC x64 RelWithDebInfo",
+      "configurePreset": "msvc-x64-relwithdebinfo",
+      "configuration": "RelWithDebInfo"
+    },
+    {
+      "name": "msvc-x86-debug",
+      "displayName": "Build MSVC x86 Debug",
+      "configurePreset": "msvc-x86-debug",
+      "configuration": "Debug"
+    },
+    {
+      "name": "msvc-x86-release",
+      "displayName": "Build MSVC x86 Release",
+      "configurePreset": "msvc-x86-release",
+      "configuration": "Release"
+    }
+  ],
+  "testPresets": [
+    {
+      "name": "msvc-x64-debug",
+      "displayName": "Unit Tests (x64 Debug)",
+      "configurePreset": "msvc-x64-debug",
+      "configuration": "Debug"
+    },
+    {
+      "name": "msvc-x64-release",
+      "displayName": "Unit Tests (x64 Release)",
+      "configurePreset": "msvc-x64-release",
+      "configuration": "Release"
     }
   ]
 }
