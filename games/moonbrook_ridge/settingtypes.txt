@@ -1,0 +1,10 @@
+# Settings for MoonBrook Ridge
+
+# If enabled, new players receive starter items when joining for the first time.
+give_initial_stuff (Give initial stuff) bool true
+
+# Enable creative mode (infinite resources, no damage)
+creative_mode (Creative mode) bool false
+
+# Enable damage (player can take damage and die)
+enable_damage (Enable player damage) bool true
