@@ -73,9 +73,6 @@
       "architecture": {
         "value": "x64",
         "strategy": "set"
-      },
-      "cacheVariables": {
-        "CMAKE_BUILD_TYPE": "Debug"
       }
     },
     {
@@ -86,9 +83,6 @@
       "architecture": {
         "value": "x64",
         "strategy": "set"
-      },
-      "cacheVariables": {
-        "CMAKE_BUILD_TYPE": "Release"
       }
     },
     {
@@ -99,9 +93,6 @@
       "architecture": {
         "value": "x64",
         "strategy": "set"
-      },
-      "cacheVariables": {
-        "CMAKE_BUILD_TYPE": "RelWithDebInfo"
       }
     },
     {
@@ -114,7 +105,6 @@
         "strategy": "set"
       },
       "cacheVariables": {
-        "CMAKE_BUILD_TYPE": "Debug",
         "VCPKG_TARGET_TRIPLET": "x86-windows"
       }
     },
@@ -128,7 +118,6 @@
         "strategy": "set"
       },
       "cacheVariables": {
-        "CMAKE_BUILD_TYPE": "Release",
         "VCPKG_TARGET_TRIPLET": "x86-windows"
       }
     }
