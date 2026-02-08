@@ -2,12 +2,17 @@
     <img src="textures/base/pack/logo.png" width="32%">
     <h1>🌙 MoonBrook Ridge</h1>
     <p><em>A farming &amp; life-simulation game built on the Luanti engine</em></p>
+    <p><strong>Version 0.1.0-dev</strong></p>
 </div>
 <br>
 
 ---
 
-> **Note:** This is a complete game, not a mod. MoonBrook Ridge is the core game experience, built on top of the powerful Luanti (formerly Minetest) voxel engine. All the farming, life-simulation, and adventure features are fully integrated into the game.
+> **🎮 This is a Complete Game, Not a Mod!**
+> 
+> MoonBrook Ridge is a standalone game built on the Luanti voxel engine. When you build and run MoonBrook Ridge, you're running the complete game - not an engine with a mod. Think of it like Stardew Valley (built on MonoGame) or any Unity/Unreal game - the engine is the foundation, but the game is the experience.
+>
+> See [INTEGRATION.md](INTEGRATION.md) for the full explanation of how this works.
 
 ---
 
