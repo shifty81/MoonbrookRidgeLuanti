@@ -4,18 +4,81 @@ This guide covers how to **build**, **run**, and **test** MoonBrook Ridge from s
 
 MoonBrook Ridge is a complete game built on the Luanti engine. When you build it, you're building the entire game - there's no game selection needed.
 
-Pick the path that matches your setup — Docker is the fastest way to get a running server, while a native build gives you the full client with graphics.
+Pick the path that matches your setup — the **one-command build scripts** are
+the fastest way to get from a fresh clone to a running binary or Visual Studio
+solution file.
 
 ---
 
 ## Table of Contents
 
+0. [One-Command Build Scripts (recommended)](#0-one-command-build-scripts-recommended)
 1. [Quick-Start with Docker (server only)](#1-quick-start-with-docker-server-only)
 2. [Native Linux Build (client + server)](#2-native-linux-build-client--server)
 3. [Windows Build with Visual Studio](#3-windows-build-with-visual-studio)
 4. [Running the Game](#4-running-the-game)
 5. [Running Tests](#5-running-tests)
 6. [Troubleshooting](#6-troubleshooting)
+
+---
+
+## 0. One-Command Build Scripts (recommended)
+
+The `scripts/` directory contains automation scripts that handle dependency
+installation, CMake configuration, and compilation in a single command.
+
+### Linux
+
+```bash
+# Clone and build in one shot (Debug, client + server)
+git clone https://github.com/shifty81/MoonbrookRidgeLuanti.git
+cd MoonbrookRidgeLuanti
+./scripts/build_linux.sh
+```
+
+The script auto-detects your distribution (Debian/Ubuntu, Fedora, Arch,
+Alpine, openSUSE) and installs the required `-dev` packages for you.
+
+| Flag | Purpose |
+|------|---------|
+| `--release` | Build in Release mode (optimised) |
+| `--server-only` | Headless server — skips graphics libraries |
+| `--no-install` | Skip automatic package installation |
+
+After the build, binaries are in **`bin/`**.
+
+### Windows
+
+> **Prerequisites:** Visual Studio 2022 with *Desktop development with C++*
+> workload, and Git.
+
+```powershell
+# PowerShell (recommended)
+git clone https://github.com/shifty81/MoonbrookRidgeLuanti.git
+cd MoonbrookRidgeLuanti
+.\scripts\build_windows.ps1
+```
+
+```bat
+REM Or classic Command Prompt
+scripts\build_windows.bat
+```
+
+The script will:
+
+1. **Check** for cmake and git on PATH.
+2. **Clone & bootstrap vcpkg** automatically if `VCPKG_ROOT` is not set.
+3. **Configure** CMake using the repository presets (installs all C++ deps via vcpkg).
+4. **Build** the project and produce a ready-to-open **`.sln` solution file**.
+
+After running the script, look for:
+
+```
+build\msvc-x64-debug\luanti.sln     ← open in Visual Studio
+build\msvc-x64-debug\bin\Debug\     ← compiled binaries
+```
+
+Pass `--release` (bat) or `-Release` (ps1) for an optimised build.
 
 ---
 
