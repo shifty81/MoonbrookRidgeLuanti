@@ -1,9 +1,10 @@
 # Building, Launching & Testing MoonBrook Ridge
 
-This guide covers how to **build**, **run**, and **test** MoonBrook Ridge from
-source.  Pick the path that matches your setup — Docker is the fastest way to
-get a running server, while a native build gives you the full client with
-graphics.
+This guide covers how to **build**, **run**, and **test** MoonBrook Ridge from source.
+
+MoonBrook Ridge is a complete game built on the Luanti engine. When you build it, you're building the entire game - there's no game selection needed.
+
+Pick the path that matches your setup — Docker is the fastest way to get a running server, while a native build gives you the full client with graphics.
 
 ---
 
@@ -113,8 +114,9 @@ cmake . -DRUN_IN_PLACE=TRUE -DCMAKE_BUILD_TYPE=Debug
 make -j$(nproc)
 ```
 
-This produces `./bin/luanti` (client+server) and `./bin/luantiserver`
-(dedicated server).
+This produces `./bin/moonbrook_ridge` (client+server) and `./bin/moonbrook_ridgeserver` (dedicated server).
+
+> **Note:** The binaries are named after the game project. These are the MoonBrook Ridge game executables built on the Luanti engine.
 
 #### Useful CMake flags
 

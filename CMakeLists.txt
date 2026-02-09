@@ -4,8 +4,8 @@ if(POLICY CMP0177)
 endif()
 
 # This can be read from ${PROJECT_NAME} after project() is called
-project(luanti)
-set(PROJECT_NAME_CAPITALIZED "Luanti")
+project(moonbrook_ridge)
+set(PROJECT_NAME_CAPITALIZED "MoonBrook Ridge")
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
@@ -13,8 +13,9 @@ set(GCC_MINIMUM_VERSION "7.5")
 set(CLANG_MINIMUM_VERSION "7.0.1")
 
 # You should not need to edit these manually, use util/bump_version.sh
-set(VERSION_MAJOR 5)
-set(VERSION_MINOR 16)
+# MoonBrook Ridge version (based on Luanti 5.16.0)
+set(VERSION_MAJOR 0)
+set(VERSION_MINOR 1)
 set(VERSION_PATCH 0)
 set(VERSION_EXTRA "" CACHE STRING "Stuff to append to version string")
 
@@ -239,6 +240,10 @@ if(RUN_IN_PLACE)
 endif()
 
 set(INSTALL_DEVTEST FALSE CACHE BOOL "Install Development Test")
+
+# MoonBrook Ridge: Install the game by default since it's the core game
+install(DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/games/moonbrook_ridge" DESTINATION "${SHAREDIR}/games/"
+	PATTERN ".git*" EXCLUDE )
 
 if(INSTALL_DEVTEST)
 	install(DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/games/devtest" DESTINATION "${SHAREDIR}/games/"

@@ -1,4 +1,4 @@
-project(luanti)
+project(moonbrook_ridge)
 
 INCLUDE(CheckTypeSize)
 INCLUDE(CheckIncludeFiles)

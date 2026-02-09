@@ -2,8 +2,32 @@
     <img src="textures/base/pack/logo.png" width="32%">
     <h1>🌙 MoonBrook Ridge</h1>
     <p><em>A farming &amp; life-simulation game built on the Luanti engine</em></p>
+    <p><strong>Version 0.1.0-dev</strong></p>
 </div>
 <br>
+
+---
+
+> **🎮 This is a Complete Game, Not a Mod!**
+> 
+> MoonBrook Ridge is a standalone game built on the Luanti voxel engine. When you build and run MoonBrook Ridge, you're running the complete game - not an engine with a mod. Think of it like Stardew Valley (built on MonoGame) or any Unity/Unreal game - the engine is the foundation, but the game is the experience.
+>
+> See [INTEGRATION.md](INTEGRATION.md) for the full explanation of how this works.
+
+---
+
+## 🎮 Quick Start
+
+**Ready to play?**
+
+1. Build from source (see [Compiling](#compiling) section below)
+2. Launch the game: `./bin/moonbrook_ridge` (or `moonbrook_ridge.exe` on Windows)
+3. Create a new world - MoonBrook Ridge is the only game!
+4. Start your farming adventure!
+
+📖 See [games/moonbrook_ridge/TESTING.md](games/moonbrook_ridge/TESTING.md) for a guide to all features.
+
+---
 
 ## About MoonBrook Ridge
 
@@ -17,14 +41,15 @@ with dynamic seasons and weather.
 
 | System | Status |
 |--------|--------|
-| Time & Seasons (4 seasons, 28-day cycles) | ✅ Implemented |
-| Hunger & Thirst survival mechanics | ✅ Implemented |
-| Dynamic weather (rain, snow, storms, fog) | ✅ Implemented |
-| Particle effects for actions | ✅ Implemented |
+| Time & Seasons (4 seasons, 28-day cycles) | ✅ Implemented & Testable |
+| Hunger & Thirst survival mechanics | ✅ Implemented & Testable |
+| Dynamic weather (rain, snow, storms, fog) | ✅ Implemented & Testable |
+| Particle effects for actions | ✅ Implemented & Testable |
 | 7 unique NPCs with relationships & gifts | ✅ Implemented |
 | Marriage & family system | ✅ Implemented |
-| Diablo-style loot system (5 rarity tiers, random affixes) | ✅ Implemented |
-| Quality-based crafting (material quality → output quality) | ✅ Implemented |
+| Diablo-style loot system (5 rarity tiers, random affixes) | ✅ Implemented & Testable |
+| Quality-based crafting (material quality → output quality) | ✅ Implemented & Testable |
+| **Playable game with basic world & items** | ✅ **Ready to Test!** |
 | Farming, fishing, mining | 🔜 Planned |
 | Shop & economy | 🔜 Planned |
 | Multi-village world (8 biomes) | 🔜 Planned |
@@ -36,7 +61,20 @@ with dynamic seasons and weather.
 
 ---
 
-## Luanti Engine
+## Architecture
+
+MoonBrook Ridge is built as a **complete game** on the Luanti engine:
+
+- **Engine**: Luanti 5.16.0 - A powerful, open-source voxel game engine
+- **Game**: MoonBrook Ridge - Fully integrated farming & life simulation
+- **Integration**: All MBR systems (`mbr_time`, `mbr_survival`, `mbr_weather`, etc.) are built directly into the engine's `builtin/game/` core
+- **Content**: Game-specific mods provide blocks, items, NPCs, and world generation
+
+This is **NOT** a mod or game selection - MoonBrook Ridge is the primary game experience. Think of it like Stardew Valley or Minecraft - it's a complete, standalone game that happens to use a powerful voxel engine.
+
+---
+
+## About the Luanti Engine
 
 Luanti is a free open-source voxel game engine with easy modding and game creation.
 
