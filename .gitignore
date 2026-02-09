@@ -136,6 +136,9 @@ compile_commands.json
 *.sln
 .vs/
 
+# Local vcpkg clone (created by scripts/build_windows.bat or .ps1)
+/vcpkg/
+
 # Old irrlichtmt. Still ignored to make bisecting easier.
 lib/irrlichtmt
 
