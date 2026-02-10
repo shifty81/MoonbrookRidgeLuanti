@@ -63,6 +63,15 @@ The core game systems are built into the Luanti engine (in `builtin/game/mbr_*.l
 
 These systems are automatically loaded when running this game.
 
+## Credits & Licensing
+
+MoonBrook Ridge is built on the [Luanti](https://www.luanti.org/) (formerly
+Minetest) voxel engine, licensed under the LGPL 2.1 (or later).  All Luanti
+contributors are gratefully acknowledged.
+
+See [CREDITS.md](CREDITS.md) for the full list of credits, third-party
+libraries, and license details.
+
 ## Contributing
 
 See the main [ROADMAP.md](../../ROADMAP.md) for planned features and development priorities.
