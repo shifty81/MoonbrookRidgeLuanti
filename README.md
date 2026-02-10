@@ -83,6 +83,21 @@ This is **NOT** a mod or game selection - MoonBrook Ridge is the primary game ex
 
 ---
 
+## Credits & Licensing
+
+MoonBrook Ridge is built on the **Luanti** engine (LGPL 2.1 or later).
+All original Luanti authors and contributors are credited and acknowledged.
+
+- Engine source code: **LGPL 2.1 or later**
+- Engine textures & sounds: **CC BY-SA 3.0** (some files CC BY-SA 4.0 / Apache 2.0)
+- MoonBrook Ridge game code: **LGPL 2.1 or later**
+
+For the complete list of contributors, third-party libraries, and license
+details see [games/moonbrook_ridge/CREDITS.md](games/moonbrook_ridge/CREDITS.md),
+[LICENSE.txt](LICENSE.txt), and [COPYING.LESSER](COPYING.LESSER).
+
+---
+
 ## About the Luanti Engine
 
 Luanti is a free open-source voxel game engine with easy modding and game creation.
