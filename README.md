@@ -28,10 +28,10 @@
 ```bash
 git clone https://github.com/shifty81/MoonbrookRidgeLuanti.git
 cd MoonbrookRidgeLuanti
-make          # build debug client + server
-make run      # launch the game
-make test     # run unit tests
-make help     # show all targets
+./scripts/setup.sh   # install dependencies + build (first time)
+make run             # launch the game
+make test            # run unit tests
+make help            # show all targets
 ```
 
 📖 See [games/moonbrook_ridge/TESTING.md](games/moonbrook_ridge/TESTING.md) for a guide to all features.
