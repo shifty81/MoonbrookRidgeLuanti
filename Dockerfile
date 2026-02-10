@@ -69,9 +69,9 @@ RUN apk add --no-cache curl gmp libstdc++ libgcc libpq jsoncpp zstd-libs \
 
 WORKDIR /var/lib/moonbrook_ridge
 
-COPY --from=builder /usr/local/share/luanti /usr/local/share/luanti
-COPY --from=builder /usr/local/bin/luantiserver /usr/local/bin/moonbrook_ridgeserver
-COPY --from=builder /usr/local/share/doc/luanti/minetest.conf.example /etc/moonbrook_ridge/moonbrook_ridge.conf
+COPY --from=builder /usr/local/share/moonbrook_ridge /usr/local/share/moonbrook_ridge
+COPY --from=builder /usr/local/bin/moonbrook_ridgeserver /usr/local/bin/moonbrook_ridgeserver
+COPY --from=builder /usr/local/share/doc/moonbrook_ridge/minetest.conf.example /etc/moonbrook_ridge/moonbrook_ridge.conf
 COPY --from=builder /usr/local/lib/libspatialindex* /usr/local/lib/
 COPY --from=builder /usr/local/lib/libluajit* /usr/local/lib/
 USER moonbrook:moonbrook
