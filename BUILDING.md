@@ -17,16 +17,17 @@ Visual Studio solution file.
 2. [Quick-Start with Docker (server only)](#2-quick-start-with-docker-server-only)
 3. [Native Linux Build (client + server)](#3-native-linux-build-client--server)
 4. [Windows Build with Visual Studio](#4-windows-build-with-visual-studio)
-5. [Running the Game](#5-running-the-game)
-6. [Running Tests](#6-running-tests)
-7. [Troubleshooting](#7-troubleshooting)
+5. [macOS Build](#5-macos-build)
+6. [Running the Game](#6-running-the-game)
+7. [Running Tests](#7-running-tests)
+8. [Troubleshooting](#8-troubleshooting)
 
 ---
 
 ## 0. Quick Start with Make (recommended)
 
 Once you have the dependencies installed (see [Native Linux Build](#3-native-linux-build-client--server)
-for your distro, or use `./scripts/build_linux.sh` once to auto-install them),
+for your distro, or use `./scripts/setup.sh` once to auto-install them),
 everything you need is a single `make` command:
 
 ```bash
@@ -60,12 +61,35 @@ After building, binaries are in **`bin/`**:
 The `scripts/` directory contains automation scripts that handle dependency
 installation, CMake configuration, and compilation in a single command.
 
+### Unified Setup (Linux & macOS)
+
+The easiest way to get started on Linux or macOS — a single script detects
+your OS and installs everything for you:
+
+```bash
+git clone https://github.com/shifty81/MoonbrookRidgeLuanti.git
+cd MoonbrookRidgeLuanti
+./scripts/setup.sh
+```
+
+This will:
+
+1. **Detect** your operating system (Linux distribution or macOS).
+2. **Install** all required development packages automatically.
+3. **Configure** CMake and **build** the project.
+
+All flags from the platform-specific scripts are supported:
+
+| Flag | Purpose |
+|------|---------|
+| `--release` | Build in Release mode (optimised) |
+| `--server-only` | Headless server — skips graphics libraries |
+| `--no-install` | Skip automatic package installation |
+
 ### Linux
 
 ```bash
-# Clone and build in one shot (Debug, client + server)
-git clone https://github.com/shifty81/MoonbrookRidgeLuanti.git
-cd MoonbrookRidgeLuanti
+# Or call the Linux build script directly
 ./scripts/build_linux.sh
 ```
 
@@ -77,6 +101,24 @@ Alpine, openSUSE) and installs the required `-dev` packages for you.
 | `--release` | Build in Release mode (optimised) |
 | `--server-only` | Headless server — skips graphics libraries |
 | `--no-install` | Skip automatic package installation |
+
+After the build, binaries are in **`bin/`**.
+
+### macOS
+
+```bash
+# Or call the macOS build script directly
+./scripts/build_macos.sh
+```
+
+The script installs the required packages via [Homebrew](https://brew.sh/)
+(installing Homebrew itself if needed) and then builds the project.
+
+| Flag | Purpose |
+|------|---------|
+| `--release` | Build in Release mode (optimised) |
+| `--server-only` | Headless server — skips graphics libraries |
+| `--no-install` | Skip automatic Homebrew package installation |
 
 After the build, binaries are in **`bin/`**.
 
@@ -281,9 +323,39 @@ For full details and additional presets, see
 
 ---
 
-## 5. Running the Game
+## 5. macOS Build
 
-### 5.1 Singleplayer (graphical client)
+A native macOS build gives you the full graphical client.  The quickest
+route is the one-command script (`./scripts/build_macos.sh` or
+`./scripts/setup.sh`); this section covers the manual approach.
+
+### 5.1 Install Dependencies
+
+```bash
+brew install cmake freetype gettext gmp jpeg-turbo jsoncpp luajit \
+  libogg libpng libvorbis openal-soft sdl2 sqlite zstd
+```
+
+### 5.2 Build
+
+```bash
+cmake -B build \
+    -DCMAKE_BUILD_TYPE=Debug \
+    -DCMAKE_FIND_FRAMEWORK=LAST \
+    -DRUN_IN_PLACE=TRUE
+
+make -C build -j$(sysctl -n hw.logicalcpu)
+```
+
+Binaries are in **`bin/`**.
+
+For full details, see [doc/compiling/macos.md](doc/compiling/macos.md).
+
+---
+
+## 6. Running the Game
+
+### 6.1 Singleplayer (graphical client)
 
 ```bash
 ./bin/moonbrook_ridge
@@ -293,7 +365,7 @@ This opens the MoonBrook Ridge main menu.  MoonBrook Ridge systems
 (time, survival, weather, NPCs, crafting, loot) are loaded automatically
 through the engine `builtin/game/init.lua`.
 
-### 5.2 Dedicated Server
+### 6.2 Dedicated Server
 
 ```bash
 # Start a server
@@ -305,7 +377,7 @@ through the engine `builtin/game/init.lua`.
 
 Connect with a MoonBrook Ridge client to `localhost:30000`.
 
-### 5.3 Verifying MBR Systems Are Loaded
+### 6.3 Verifying MBR Systems Are Loaded
 
 Once in-game, you can verify the MoonBrook Ridge systems with these chat
 commands:
@@ -323,9 +395,9 @@ The HUD should display: season/day/year clock (top-center), weather indicator
 
 ---
 
-## 6. Running Tests
+## 7. Running Tests
 
-### 6.1 Lua Linting (Luacheck)
+### 7.1 Lua Linting (Luacheck)
 
 Luacheck validates all Lua code for errors, undefined globals, and style
 issues.
@@ -341,7 +413,7 @@ luarocks install --local luacheck
 ~/.luarocks/bin/luacheck --config=games/moonbrook_ridge/.luacheckrc games/moonbrook_ridge
 ```
 
-### 6.2 Lua Unit Tests (Busted)
+### 7.2 Lua Unit Tests (Busted)
 
 Busted tests validate pure Lua logic without needing the full engine.  Tests
 live alongside the code they exercise:
@@ -363,7 +435,7 @@ luarocks install --local busted
 ~/.luarocks/bin/busted builtin/game/tests/
 ```
 
-### 6.3 C++ Unit Tests
+### 7.3 C++ Unit Tests
 
 The engine includes C++ unit tests that are compiled when
 `BUILD_UNITTESTS=TRUE` (the default).
@@ -373,7 +445,7 @@ The engine includes C++ unit tests that are compiled when
 ./bin/moonbrook_ridge --run-unittests
 ```
 
-### 6.4 Integration Tests (Multiplayer)
+### 7.4 Integration Tests (Multiplayer)
 
 These spin up a server and client to test game features end-to-end.
 Requires a graphical environment (or `xvfb-run`).
@@ -386,7 +458,7 @@ Requires a graphical environment (or `xvfb-run`).
 xvfb-run ./util/test_singleplayer.sh
 ```
 
-### 6.5 CI Pipeline
+### 7.5 CI Pipeline
 
 GitHub Actions automatically runs all of the above on every push and PR.  The
 workflows are in `.github/workflows/`:
@@ -402,7 +474,7 @@ workflows are in `.github/workflows/`:
 
 ---
 
-## 7. Troubleshooting
+## 8. Troubleshooting
 
 ### Missing dependencies
 
