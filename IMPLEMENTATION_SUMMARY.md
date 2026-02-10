@@ -78,7 +78,7 @@ All previously implemented MBR systems are now accessible in-game:
 
 2. **Launch the game:**
    ```bash
-   ./bin/luanti
+   ./bin/moonbrook_ridge
    ```
 
 3. **Create a world:**

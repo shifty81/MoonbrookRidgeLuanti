@@ -64,8 +64,8 @@ jobs:
         run: |
           dest=$(mktemp -d)
           unzip -q -d "$dest" artifact/*.zip
-          cd "$dest"/luanti-*-win*
-          wine bin/luanti.exe --version
+          cd "$dest"/moonbrook_ridge-*-win* || cd "$dest"/luanti-*-win*
+          wine bin/moonbrook_ridge.exe --version
 
       - name: Build for NSIS
         run: |
@@ -73,7 +73,7 @@ jobs:
            ./util/buildbot/buildwin${{ matrix.config.bits }}.sh B -DRUN_IN_PLACE=0
            dest=$(mktemp -d)
            unzip -q -d "$dest" B/build/*.zip
-           cd "$dest"/luanti-*-nsis
+           cd "$dest"/moonbrook_ridge-*-nsis || cd "$dest"/luanti-*-nsis
            makensis -WX -V3 sfx-launcher.nsi
            cp -v "$dest"/*.exe $GITHUB_WORKSPACE/artifact/
         if: ${{ matrix.config.nsis }}
