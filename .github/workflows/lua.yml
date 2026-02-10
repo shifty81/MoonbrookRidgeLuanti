@@ -5,13 +5,13 @@ on:
   push:
     paths:
       - 'builtin/**.lua'
-      - 'games/devtest/**.lua'
+      - 'games/moonbrook_ridge/**.lua'
       - 'util/ci/**'
       - '.github/workflows/lua.yml'
   pull_request:
     paths:
       - 'builtin/**.lua'
-      - 'games/devtest/**.lua'
+      - 'games/moonbrook_ridge/**.lua'
       - 'util/ci/**'
       - '.github/workflows/lua.yml'
 
@@ -35,7 +35,7 @@ jobs:
         CXX: clang++
         CMAKE_FLAGS: "-DENABLE_GETTEXT=0 -DBUILD_SERVER=0 -DBUILD_UNITTESTS=0"
 
-    - name: Integration test + devtest
+    - name: Integration test
       run: |
         serverconf="profiler.load=true" ./util/test_multiplayer.sh
 
@@ -69,6 +69,6 @@ jobs:
         $HOME/.luarocks/bin/busted builtin
         $HOME/.luarocks/bin/busted builtin --lua=$HOME/LuaJIT/src/luajit
 
-    - name: Run checks (devtest)
+    - name: Run checks (moonbrook_ridge)
       run: |
-        $HOME/.luarocks/bin/luacheck --config=games/devtest/.luacheckrc games/devtest
+        $HOME/.luarocks/bin/luacheck --config=games/moonbrook_ridge/.luacheckrc games/moonbrook_ridge

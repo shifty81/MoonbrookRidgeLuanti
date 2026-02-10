@@ -2,8 +2,8 @@
 # Runs a multiplayer server and connects a headless client, devtest unittests are executed.
 
 dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-gameid=${gameid:-devtest}
-executable=$dir/../bin/luanti
+gameid=${gameid:-moonbrook_ridge}
+executable=$dir/../bin/moonbrook_ridge
 testspath=$dir/../tests
 conf_client1=$testspath/client1.conf
 conf_server=$testspath/server.conf

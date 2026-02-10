@@ -20,10 +20,19 @@
 
 **Ready to play?**
 
-1. Build from source (see [Compiling](#compiling) section below)
-2. Launch the game: `./bin/moonbrook_ridge` (or `moonbrook_ridge.exe` on Windows)
+1. Build from source (see [Compiling](#compiling) section below, or just run `make`)
+2. Launch the game: `./bin/moonbrook_ridge` (or `make run`)
 3. Create a new world - MoonBrook Ridge is the only game!
 4. Start your farming adventure!
+
+```bash
+git clone https://github.com/shifty81/MoonbrookRidgeLuanti.git
+cd MoonbrookRidgeLuanti
+make          # build debug client + server
+make run      # launch the game
+make test     # run unit tests
+make help     # show all targets
+```
 
 📖 See [games/moonbrook_ridge/TESTING.md](games/moonbrook_ridge/TESTING.md) for a guide to all features.
 
@@ -159,29 +168,29 @@ Where each location is on each platform:
     * `share` = `.`
     * `user`  = `.`
 * Windows installed:
-    * `bin`   = `C:\Program Files\Minetest\bin (Depends on the install location)`
-    * `share` = `C:\Program Files\Minetest (Depends on the install location)`
-    * `user`  = `%APPDATA%\Minetest` or `%MINETEST_USER_PATH%`
+    * `bin`   = `C:\Program Files\MoonBrook Ridge\bin (Depends on the install location)`
+    * `share` = `C:\Program Files\MoonBrook Ridge (Depends on the install location)`
+    * `user`  = `%APPDATA%\MoonBrook Ridge` or `%MINETEST_USER_PATH%`
 * Linux installed:
     * `bin`   = `/usr/bin`
-    * `share` = `/usr/share/minetest`
-    * `user`  = `~/.minetest` or `$MINETEST_USER_PATH`
+    * `share` = `/usr/share/moonbrook_ridge`
+    * `user`  = `~/.moonbrook_ridge` or `$MINETEST_USER_PATH`
 * macOS:
     * `bin`   = `Contents/MacOS`
     * `share` = `Contents/Resources`
-    * `user`  = `Contents/User` or `~/Library/Application Support/minetest` or `$MINETEST_USER_PATH`
+    * `user`  = `Contents/User` or `~/Library/Application Support/moonbrook_ridge` or `$MINETEST_USER_PATH`
 
 Worlds can be found as separate folders in: `user/worlds/`
 
 Configuration file
 ------------------
 - Default location:
-    `user/minetest.conf`
-- This file is created by closing Luanti for the first time.
+    `user/moonbrook_ridge.conf`
+- This file is created by closing the game for the first time.
 - A specific file can be specified on the command line:
     `--config <path-to-file>`
 - A run-in-place build will look for the configuration file in
-    `location_of_exe/../minetest.conf` and also `location_of_exe/../../minetest.conf`
+    `location_of_exe/../moonbrook_ridge.conf` and also `location_of_exe/../../moonbrook_ridge.conf`
 
 Command-line options
 --------------------
@@ -198,7 +207,7 @@ Compiling
 Docker
 ------
 
-- [Developing minetestserver with Docker](doc/developing/docker.md)
+- [Developing server with Docker](doc/developing/docker.md)
 - [Running a server with Docker](doc/docker_server.md)
 
 Version scheme
