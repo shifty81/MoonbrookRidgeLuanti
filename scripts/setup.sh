@@ -36,7 +36,7 @@ Options:
 Supported Platforms:
   Linux    — Debian/Ubuntu, Fedora/RHEL, Arch, Alpine, openSUSE
   macOS    — via Homebrew
-  Windows  — use scripts\build_windows.bat or .\scripts\build_windows.ps1
+  Windows  — use .\scripts\build_windows.bat or .\scripts\build_windows.ps1
 
 After a successful build the binaries are located in:
   bin/moonbrook_ridge        — graphical client + integrated server
@@ -81,7 +81,7 @@ case "$OS" in
         echo "Supported platforms:"
         echo "  Linux    — ./scripts/build_linux.sh"
         echo "  macOS    — ./scripts/build_macos.sh"
-        echo "  Windows  — scripts\\build_windows.bat or .\\scripts\\build_windows.ps1"
+        echo "  Windows  — .\\scripts\\build_windows.bat or .\\scripts\\build_windows.ps1"
         echo ""
         echo "See BUILDING.md for manual build instructions."
         exit 1

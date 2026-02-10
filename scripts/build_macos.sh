@@ -82,7 +82,7 @@ install_deps() {
 
     echo ">> Installing required Homebrew packages..."
     local pkgs=(
-        cmake gmp jsoncpp sqlite zstd zlib
+        cmake gmp jsoncpp sqlite zstd
         luajit gettext
     )
     if [ "$BUILD_CLIENT" = "TRUE" ]; then
