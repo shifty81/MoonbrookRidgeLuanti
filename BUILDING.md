@@ -4,25 +4,58 @@ This guide covers how to **build**, **run**, and **test** MoonBrook Ridge from s
 
 MoonBrook Ridge is a complete game built on the Luanti engine. When you build it, you're building the entire game - there's no game selection needed.
 
-Pick the path that matches your setup — the **one-command build scripts** are
-the fastest way to get from a fresh clone to a running binary or Visual Studio
-solution file.
+Pick the path that matches your setup — the **Makefile** or **one-command build
+scripts** are the fastest way to get from a fresh clone to a running binary or
+Visual Studio solution file.
 
 ---
 
 ## Table of Contents
 
-0. [One-Command Build Scripts (recommended)](#0-one-command-build-scripts-recommended)
-1. [Quick-Start with Docker (server only)](#1-quick-start-with-docker-server-only)
-2. [Native Linux Build (client + server)](#2-native-linux-build-client--server)
-3. [Windows Build with Visual Studio](#3-windows-build-with-visual-studio)
-4. [Running the Game](#4-running-the-game)
-5. [Running Tests](#5-running-tests)
-6. [Troubleshooting](#6-troubleshooting)
+0. [Quick Start with Make (recommended)](#0-quick-start-with-make-recommended)
+1. [One-Command Build Scripts](#1-one-command-build-scripts)
+2. [Quick-Start with Docker (server only)](#2-quick-start-with-docker-server-only)
+3. [Native Linux Build (client + server)](#3-native-linux-build-client--server)
+4. [Windows Build with Visual Studio](#4-windows-build-with-visual-studio)
+5. [Running the Game](#5-running-the-game)
+6. [Running Tests](#6-running-tests)
+7. [Troubleshooting](#7-troubleshooting)
 
 ---
 
-## 0. One-Command Build Scripts (recommended)
+## 0. Quick Start with Make (recommended)
+
+Once you have the dependencies installed (see [Native Linux Build](#3-native-linux-build-client--server)
+for your distro, or use `./scripts/build_linux.sh` once to auto-install them),
+everything you need is a single `make` command:
+
+```bash
+git clone https://github.com/shifty81/MoonbrookRidgeLuanti.git
+cd MoonbrookRidgeLuanti
+make            # Build debug client + server
+```
+
+### Available targets
+
+| Command           | What it does |
+|-------------------|--------------|
+| `make`            | Build client + server (Debug) |
+| `make release`    | Build client + server (Release, optimised) |
+| `make server`     | Build dedicated server only (no graphics libs needed) |
+| `make test`       | Build and run C++ unit tests |
+| `make test-lua`   | Run Lua linting (luacheck) and Busted unit tests |
+| `make run`        | Build and launch the game client |
+| `make run-server` | Build and launch the dedicated server |
+| `make clean`      | Remove the `build/` directory |
+| `make help`       | Show all available targets |
+
+After building, binaries are in **`bin/`**:
+- `bin/moonbrook_ridge` — graphical client + integrated server
+- `bin/moonbrook_ridgeserver` — dedicated headless server
+
+---
+
+## 1. One-Command Build Scripts
 
 The `scripts/` directory contains automation scripts that handle dependency
 installation, CMake configuration, and compilation in a single command.
@@ -74,15 +107,15 @@ The script will:
 After running the script, look for:
 
 ```
-build\msvc-x64-debug\luanti.sln     ← open in Visual Studio
-build\msvc-x64-debug\bin\Debug\     ← compiled binaries
+build\msvc-x64-debug\moonbrook_ridge.sln     ← open in Visual Studio
+build\msvc-x64-debug\bin\Debug\              ← compiled binaries
 ```
 
 Pass `--release` (bat) or `-Release` (ps1) for an optimised build.
 
 ---
 
-## 1. Quick-Start with Docker (server only)
+## 2. Quick-Start with Docker (server only)
 
 The Docker build produces a **headless server** — perfect for testing game
 logic, Lua systems, and multiplayer without needing graphics libraries.
@@ -98,13 +131,13 @@ docker run --rm -it -p 30000:30000/udp moonbrook-server
 docker run -d --name mbr -p 30000:30000/udp moonbrook-server
 ```
 
-Connect with any Luanti client to `localhost:30000`.
+Connect with the MoonBrook Ridge client to `localhost:30000`.
 
 > **Tip:** Mount a local config to customise the server:
 >
 > ```bash
 > docker run --rm -it \
->   -v $(pwd)/minetest.conf.example:/etc/minetest/minetest.conf \
+>   -v $(pwd)/moonbrook_ridge.conf:/etc/moonbrook_ridge/moonbrook_ridge.conf \
 >   -p 30000:30000/udp \
 >   moonbrook-server
 > ```
@@ -114,12 +147,12 @@ See also: [Docker server documentation](doc/docker_server.md) and
 
 ---
 
-## 2. Native Linux Build (client + server)
+## 3. Native Linux Build (client + server)
 
 A native build gives you the full graphical client with the MoonBrook Ridge
 systems loaded as part of the engine builtin.
 
-### 2.1 Install Dependencies
+### 3.1 Install Dependencies
 
 <details>
 <summary><strong>Debian / Ubuntu</strong></summary>
@@ -167,7 +200,7 @@ sudo apk add build-base cmake libpng-dev jpeg-dev mesa-dev sqlite-dev \
 For the full dependency list and other platforms, see
 [doc/compiling/](doc/compiling/).
 
-### 2.2 Build
+### 3.2 Build
 
 ```bash
 # Configure — RUN_IN_PLACE puts binaries and data in the source tree
@@ -189,19 +222,18 @@ This produces `./bin/moonbrook_ridge` (client+server) and `./bin/moonbrook_ridge
 | `-DBUILD_CLIENT=FALSE` | Skip the graphical client (headless build) |
 | `-DBUILD_UNITTESTS=TRUE` | Include C++ unit tests (default: on) |
 | `-DCMAKE_BUILD_TYPE=Release` | Optimised release build |
-| `-DINSTALL_DEVTEST=TRUE` | Ship the DevTest game alongside the binary |
 
 Run `cmake . -LH` to see all available options.
 
 ---
 
-## 3. Windows Build with Visual Studio
+## 4. Windows Build with Visual Studio
 
 The repository includes **CMake presets** that automate the entire
 configure → build → debug cycle on Windows. Visual Studio 2022 and VS Code
 both detect these presets automatically.
 
-### 3.1 Prerequisites
+### 4.1 Prerequisites
 
 1. **Visual Studio 2022** (Community or higher) with the **Desktop development
    with C++** workload.
@@ -217,7 +249,7 @@ cd C:\vcpkg
 
 Restart your terminal or IDE after setting `VCPKG_ROOT`.
 
-### 3.2 Build with Visual Studio 2022
+### 4.2 Build with Visual Studio 2022
 
 1. Open Visual Studio → **File → Open → Folder…** → select this repo.
 2. Visual Studio detects `CMakePresets.json` and shows available presets in the
@@ -227,7 +259,7 @@ Restart your terminal or IDE after setting `VCPKG_ROOT`.
 4. Press **Ctrl+Shift+B** to build.
 5. Press **F5** to launch the client under the debugger.
 
-### 3.3 Build with VS Code
+### 4.3 Build with VS Code
 
 1. Install the **C/C++ Extension Pack** extension.
 2. Open the repository folder. CMake Tools picks up the presets automatically.
@@ -236,12 +268,12 @@ Restart your terminal or IDE after setting `VCPKG_ROOT`.
    - **Ctrl+Shift+B** → Build Debug
    - **F5** → Launch Client (Debug) with breakpoints
 
-### 3.4 Build from the command line (PowerShell)
+### 4.4 Build from the command line (PowerShell)
 
 ```powershell
 cmake --preset msvc-x64-debug
 cmake --build --preset msvc-x64-debug
-.\build\msvc-x64-debug\bin\Debug\luanti.exe --run-unittests
+.\build\msvc-x64-debug\bin\Debug\moonbrook_ridge.exe --run-unittests
 ```
 
 For full details and additional presets, see
@@ -249,32 +281,31 @@ For full details and additional presets, see
 
 ---
 
-## 4. Running the Game
+## 5. Running the Game
 
-### 4.1 Singleplayer (graphical client)
+### 5.1 Singleplayer (graphical client)
 
 ```bash
-./bin/luanti
+./bin/moonbrook_ridge
 ```
 
-This opens the Luanti main menu.  Select a game — MoonBrook Ridge systems
+This opens the MoonBrook Ridge main menu.  MoonBrook Ridge systems
 (time, survival, weather, NPCs, crafting, loot) are loaded automatically
-through the engine `builtin/game/init.lua`.  You can use **DevTest** as a
-sandbox world that includes basic nodes and tools.
+through the engine `builtin/game/init.lua`.
 
-### 4.2 Dedicated Server
+### 5.2 Dedicated Server
 
 ```bash
-# Start a server using the DevTest game
-./bin/luantiserver --gameid devtest --worldname test_world
+# Start a server
+./bin/moonbrook_ridgeserver --worldname test_world
 
 # Or with a custom config file
-./bin/luantiserver --config minetest.conf.example
+./bin/moonbrook_ridgeserver --config moonbrook_ridge.conf
 ```
 
-Connect with a Luanti client to `localhost:30000`.
+Connect with a MoonBrook Ridge client to `localhost:30000`.
 
-### 4.3 Verifying MBR Systems Are Loaded
+### 5.3 Verifying MBR Systems Are Loaded
 
 Once in-game, you can verify the MoonBrook Ridge systems with these chat
 commands:
@@ -292,9 +323,9 @@ The HUD should display: season/day/year clock (top-center), weather indicator
 
 ---
 
-## 5. Running Tests
+## 6. Running Tests
 
-### 5.1 Lua Linting (Luacheck)
+### 6.1 Lua Linting (Luacheck)
 
 Luacheck validates all Lua code for errors, undefined globals, and style
 issues.
@@ -306,11 +337,11 @@ luarocks install --local luacheck
 # Lint builtin code (includes MBR systems)
 ~/.luarocks/bin/luacheck builtin
 
-# Lint DevTest mods
-~/.luarocks/bin/luacheck --config=games/devtest/.luacheckrc games/devtest
+# Lint game mods
+~/.luarocks/bin/luacheck --config=games/moonbrook_ridge/.luacheckrc games/moonbrook_ridge
 ```
 
-### 5.2 Lua Unit Tests (Busted)
+### 6.2 Lua Unit Tests (Busted)
 
 Busted tests validate pure Lua logic without needing the full engine.  Tests
 live alongside the code they exercise:
@@ -332,30 +363,30 @@ luarocks install --local busted
 ~/.luarocks/bin/busted builtin/game/tests/
 ```
 
-### 5.3 C++ Unit Tests
+### 6.3 C++ Unit Tests
 
 The engine includes C++ unit tests that are compiled when
 `BUILD_UNITTESTS=TRUE` (the default).
 
 ```bash
 # After building:
-./bin/luanti --run-unittests
+./bin/moonbrook_ridge --run-unittests
 ```
 
-### 5.4 Integration Tests (Multiplayer)
+### 6.4 Integration Tests (Multiplayer)
 
 These spin up a server and client to test game features end-to-end.
 Requires a graphical environment (or `xvfb-run`).
 
 ```bash
-# Multiplayer test with DevTest
+# Multiplayer test
 ./util/test_multiplayer.sh
 
 # Singleplayer visual test (requires X or Wayland)
 xvfb-run ./util/test_singleplayer.sh
 ```
 
-### 5.5 CI Pipeline
+### 6.5 CI Pipeline
 
 GitHub Actions automatically runs all of the above on every push and PR.  The
 workflows are in `.github/workflows/`:
@@ -371,7 +402,7 @@ workflows are in `.github/workflows/`:
 
 ---
 
-## 6. Troubleshooting
+## 7. Troubleshooting
 
 ### Missing dependencies
 
@@ -389,7 +420,7 @@ If you don't need the client UI:
 ```bash
 cmake . -DBUILD_CLIENT=FALSE -DBUILD_SERVER=TRUE -DRUN_IN_PLACE=TRUE
 make -j$(nproc)
-./bin/luantiserver --gameid devtest
+./bin/moonbrook_ridgeserver
 ```
 
 ### Luacheck errors on MBR files

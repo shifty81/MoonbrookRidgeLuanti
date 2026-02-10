@@ -80,6 +80,7 @@ AppDir
 
 ## Configuration/log files
 minetest.conf
+moonbrook_ridge.conf
 debug.txt
 debug.txt.1
 
@@ -100,7 +101,9 @@ doc/mkdocs/mkdocs.yml
 ## Build files
 build/
 CMakeFiles
-Makefile
+# Ignore CMake-generated Makefiles (but not the top-level convenience Makefile)
+**/Makefile
+!/Makefile
 cmake_install.cmake
 CMakeCache.txt
 CPackConfig.cmake

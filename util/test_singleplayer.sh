@@ -2,8 +2,8 @@
 # Runs a singleplayer session with software-rendering.
 
 dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-gameid=${gameid:-devtest}
-executable=$dir/../bin/luanti
+gameid=${gameid:-moonbrook_ridge}
+executable=$dir/../bin/moonbrook_ridge
 testspath=$dir/../tests
 conf_client=$testspath/client.conf
 worldpath=$testspath/world

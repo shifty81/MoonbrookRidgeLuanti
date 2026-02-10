@@ -32,22 +32,23 @@ RUN git clone --recursive https://github.com/jupp0r/prometheus-cpp && \
 
 FROM dev as builder
 
-COPY .git /usr/src/luanti/.git
-COPY CMakeLists.txt /usr/src/luanti/CMakeLists.txt
-COPY README.md /usr/src/luanti/README.md
-COPY minetest.conf.example /usr/src/luanti/minetest.conf.example
-COPY builtin /usr/src/luanti/builtin
-COPY cmake /usr/src/luanti/cmake
-COPY doc /usr/src/luanti/doc
-COPY fonts /usr/src/luanti/fonts
-COPY lib /usr/src/luanti/lib
-COPY misc /usr/src/luanti/misc
-COPY po /usr/src/luanti/po
-COPY src /usr/src/luanti/src
-COPY irr /usr/src/luanti/irr
-COPY textures /usr/src/luanti/textures
+COPY .git /usr/src/moonbrook_ridge/.git
+COPY CMakeLists.txt /usr/src/moonbrook_ridge/CMakeLists.txt
+COPY README.md /usr/src/moonbrook_ridge/README.md
+COPY minetest.conf.example /usr/src/moonbrook_ridge/minetest.conf.example
+COPY builtin /usr/src/moonbrook_ridge/builtin
+COPY cmake /usr/src/moonbrook_ridge/cmake
+COPY doc /usr/src/moonbrook_ridge/doc
+COPY fonts /usr/src/moonbrook_ridge/fonts
+COPY games /usr/src/moonbrook_ridge/games
+COPY lib /usr/src/moonbrook_ridge/lib
+COPY misc /usr/src/moonbrook_ridge/misc
+COPY po /usr/src/moonbrook_ridge/po
+COPY src /usr/src/moonbrook_ridge/src
+COPY irr /usr/src/moonbrook_ridge/irr
+COPY textures /usr/src/moonbrook_ridge/textures
 
-WORKDIR /usr/src/luanti
+WORKDIR /usr/src/moonbrook_ridge
 RUN cmake -B build \
 		-DCMAKE_INSTALL_PREFIX=/usr/local \
 		-DCMAKE_BUILD_TYPE=Release \
@@ -63,20 +64,20 @@ FROM $DOCKER_IMAGE AS runtime
 
 RUN apk add --no-cache curl gmp libstdc++ libgcc libpq jsoncpp zstd-libs \
 				sqlite-libs postgresql hiredis leveldb && \
-	adduser -D minetest --uid 30000 -h /var/lib/minetest && \
-	chown -R minetest:minetest /var/lib/minetest
+	adduser -D moonbrook --uid 30000 -h /var/lib/moonbrook_ridge && \
+	chown -R moonbrook:moonbrook /var/lib/moonbrook_ridge
 
-WORKDIR /var/lib/minetest
+WORKDIR /var/lib/moonbrook_ridge
 
 COPY --from=builder /usr/local/share/luanti /usr/local/share/luanti
-COPY --from=builder /usr/local/bin/luantiserver /usr/local/bin/luantiserver
-COPY --from=builder /usr/local/share/doc/luanti/minetest.conf.example /etc/minetest/minetest.conf
+COPY --from=builder /usr/local/bin/luantiserver /usr/local/bin/moonbrook_ridgeserver
+COPY --from=builder /usr/local/share/doc/luanti/minetest.conf.example /etc/moonbrook_ridge/moonbrook_ridge.conf
 COPY --from=builder /usr/local/lib/libspatialindex* /usr/local/lib/
 COPY --from=builder /usr/local/lib/libluajit* /usr/local/lib/
-USER minetest:minetest
+USER moonbrook:moonbrook
 
 EXPOSE 30000/udp 30000/tcp
-VOLUME /var/lib/minetest/ /etc/minetest/
+VOLUME /var/lib/moonbrook_ridge/ /etc/moonbrook_ridge/
 
-ENTRYPOINT ["/usr/local/bin/luantiserver"]
-CMD ["--config", "/etc/minetest/minetest.conf"]
+ENTRYPOINT ["/usr/local/bin/moonbrook_ridgeserver"]
+CMD ["--config", "/etc/moonbrook_ridge/moonbrook_ridge.conf"]
