@@ -18,6 +18,19 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 
+LOG_FILE="${SETUP_LOG_FILE:-$REPO_ROOT/setup.log}"
+LOG_DIR="$(dirname "$LOG_FILE")"
+if ! mkdir -p "$LOG_DIR"; then
+    echo "ERROR: Unable to create log directory '$LOG_DIR'."
+    exit 1
+fi
+if ! touch "$LOG_FILE" 2>/dev/null; then
+    echo "ERROR: Log file '$LOG_FILE' is not writable."
+    exit 1
+fi
+exec > >(tee -a "$LOG_FILE") 2>&1
+echo ">> Logging output to $LOG_FILE"
+
 show_help() {
     cat <<'EOF'
 MoonBrook Ridge — Automated Setup & Build

@@ -485,6 +485,12 @@ package for your distribution.  The most common missing packages are:
 - `libluajit-5.1-dev` — optional but strongly recommended
 - `libfreetype6-dev` — required for font rendering
 
+### `setup.sh` window closes immediately
+
+If you launch `./scripts/setup.sh` from a file manager and the terminal closes
+right away, open `setup.log` in the repo root to review the full output.  You
+can override the log location with `SETUP_LOG_FILE=/path/to/log ./scripts/setup.sh`.
+
 ### Server-only build (no graphics)
 
 If you don't need the client UI:
