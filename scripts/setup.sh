@@ -19,6 +19,15 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 
 LOG_FILE="${SETUP_LOG_FILE:-$REPO_ROOT/setup.log}"
+LOG_DIR="$(dirname "$LOG_FILE")"
+if [ ! -d "$LOG_DIR" ]; then
+    echo "ERROR: Log directory '$LOG_DIR' does not exist."
+    exit 1
+fi
+if [ ! -w "$LOG_DIR" ]; then
+    echo "ERROR: Log directory '$LOG_DIR' is not writable."
+    exit 1
+fi
 exec > >(tee -a "$LOG_FILE") 2>&1
 echo ">> Logging output to $LOG_FILE"
 
