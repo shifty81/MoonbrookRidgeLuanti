@@ -20,12 +20,12 @@ REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 
 LOG_FILE="${SETUP_LOG_FILE:-$REPO_ROOT/setup.log}"
 LOG_DIR="$(dirname "$LOG_FILE")"
-if [ ! -d "$LOG_DIR" ]; then
-    echo "ERROR: Log directory '$LOG_DIR' does not exist."
+if ! mkdir -p "$LOG_DIR"; then
+    echo "ERROR: Unable to create log directory '$LOG_DIR'."
     exit 1
 fi
-if [ ! -w "$LOG_DIR" ]; then
-    echo "ERROR: Log directory '$LOG_DIR' is not writable."
+if ! touch "$LOG_FILE" 2>/dev/null; then
+    echo "ERROR: Log file '$LOG_FILE' is not writable."
     exit 1
 fi
 exec > >(tee -a "$LOG_FILE") 2>&1
