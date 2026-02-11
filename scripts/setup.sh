@@ -18,6 +18,10 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 
+LOG_FILE="${SETUP_LOG_FILE:-$REPO_ROOT/setup.log}"
+exec > >(tee -a "$LOG_FILE") 2>&1
+echo ">> Logging output to $LOG_FILE"
+
 show_help() {
     cat <<'EOF'
 MoonBrook Ridge — Automated Setup & Build
