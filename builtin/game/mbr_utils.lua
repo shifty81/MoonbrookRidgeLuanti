@@ -16,9 +16,9 @@ function mbr.utils.clamp(val, min_v, max_v)
 end
 
 --- Build a heart display string (filled ♥ and empty ♡).
--- @param hearts  current heart count (0–10)
+-- @param hearts  current heart count (fractional values are floored)
 -- @param max     optional max hearts (default 10)
--- @return string like "♥♥♥♡♡♡♡♡♡♡"
+-- @return string of filled and empty heart characters
 function mbr.utils.format_hearts(hearts, max)
 	max = max or 10
 	local filled = math.floor(hearts)
