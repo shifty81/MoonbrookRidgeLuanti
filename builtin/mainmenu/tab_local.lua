@@ -18,19 +18,18 @@ local current_port = core.settings:get("port")
 function current_game()
 	local gameid = core.settings:get("menu_last_game")
 	local game = gameid and pkgmgr.find_by_gameid(gameid)
-	-- Fall back to first game installed if one exists.
+	-- Fall back: prefer moonbrook_ridge, then first non-devtest game.
 	if not game and #pkgmgr.games > 0 then
-
-		-- If devtest is the first game in the list and there is another
-		-- game available, pick the other game instead.
-		local picked_game
-		if pkgmgr.games[1].id == "devtest" and #pkgmgr.games > 1 then
-			picked_game = 2
+		-- Look for the MoonBrook Ridge game first
+		local mbr_game = pkgmgr.find_by_gameid("moonbrook_ridge")
+		if mbr_game then
+			game = mbr_game
+		elseif pkgmgr.games[1].id == "devtest" and #pkgmgr.games > 1 then
+			game = pkgmgr.games[2]
 		else
-			picked_game = 1
+			game = pkgmgr.games[1]
 		end
 
-		game = pkgmgr.games[picked_game]
 		gameid = game.id
 		core.settings:set("menu_last_game", gameid)
 	end
@@ -153,9 +152,9 @@ local function get_formspec(tabview, name, tabdata)
 		local H = tabview.height
 
 		local hypertext = "<global valign=middle halign=center size=18>" ..
-				fgettext_ne("Luanti is a game-creation platform that allows you to play many different games.") .. "\n" ..
-				fgettext_ne("Luanti doesn't come with a game by default.") .. " " ..
-				fgettext_ne("You need to install a game before you can create a world.")
+				fgettext_ne("MoonBrook Ridge is a farming and life-simulation game.") .. "\n" ..
+				fgettext_ne("No game content was found.") .. " " ..
+				fgettext_ne("Please reinstall MoonBrook Ridge to restore game files.")
 
 		local button_y = H * 2/3 - 0.6
 		return table.concat({

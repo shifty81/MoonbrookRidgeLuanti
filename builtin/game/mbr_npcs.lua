@@ -9,12 +9,7 @@ mbr.npcs = {
 	schedules = {},
 }
 
--- Clamp helper
-local function clamp(val, min_v, max_v)
-	if val < min_v then return min_v end
-	if val > max_v then return max_v end
-	return val
-end
+local clamp = mbr.utils.clamp
 
 -- HUD bubble tracking per player
 local bubble_huds = {}
@@ -655,14 +650,7 @@ function mbr.npcs.start_dialogue(player, npc_name)
 
 	local hearts = mbr.npcs.get_hearts(player_name, npc_name)
 	local text = get_dialogue_text(npc_name, hearts)
-	local heart_display = ""
-	for i = 1, 10 do
-		if i <= math.floor(hearts) then
-			heart_display = heart_display .. "♥"
-		else
-			heart_display = heart_display .. "♡"
-		end
-	end
+	local heart_display = mbr.utils.format_hearts(hearts)
 
 	local fs = "formspec_version[6]"
 		.. "size[10,8]"
@@ -802,14 +790,7 @@ core.register_chatcommand("npc_status", {
 		local lines = {"=== NPC Relationships ==="}
 		for npc_id, def in pairs(mbr.npcs.definitions) do
 			local hearts = mbr.npcs.get_hearts(player_name, npc_id)
-			local heart_bar = ""
-			for i = 1, 10 do
-				if i <= math.floor(hearts) then
-					heart_bar = heart_bar .. "♥"
-				else
-					heart_bar = heart_bar .. "♡"
-				end
-			end
+			local heart_bar = mbr.utils.format_hearts(hearts)
 			local rel = ensure_relationship(player_name, npc_id)
 			table.insert(lines, string.format("%s (%s): %s (%.1f/10) | Gifts: %d",
 				def.name, def.role, heart_bar, hearts, rel.total_gifts))
