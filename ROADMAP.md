@@ -118,23 +118,23 @@ These systems form the foundation that every other feature depends on.
 ## Phase 3 — Economy & Crafting
 
 - [x] **Crafting System (Core)** — *see Phase 1 above*
-- [ ] **Crafting System (Enhanced UI)**
-  - [ ] Crafting station placeable node (currently chat-command only)
-  - [ ] Recipe discovery / unlock system
-  - [ ] Category tabs (food, tools, furniture, decor, potions)
-  - [ ] Craft-queue animation / progress
+- [x] **Crafting System (Enhanced UI)** (`mbr_station`)
+  - [x] Crafting station placeable node (currently chat-command only)
+  - [x] Recipe discovery / unlock system
+  - [x] Category tabs (food, tools, furniture, decor, potions)
+  - [x] Craft-queue animation / progress
 
-- [ ] **Shop System**
-  - [ ] Buy / sell formspec with currency
-  - [ ] NPC merchant inventories that rotate daily
-  - [ ] Supply-and-demand price adjustments
-  - [ ] Shipping bin for bulk selling
+- [x] **Shop System** (`mbr_shop`)
+  - [x] Buy / sell formspec with currency
+  - [x] NPC merchant inventories that rotate daily
+  - [x] Supply-and-demand price adjustments
+  - [x] Shipping bin for bulk selling
 
-- [ ] **Tool Upgrade System**
-  - [ ] 6 upgradeable tools: hoe, watering can, axe, pickaxe, fishing rod, scythe
-  - [ ] Upgrade tiers (basic → copper → iron → gold → crystal)
-  - [ ] Upgrade station node with material cost
-  - [ ] Upgraded tools work faster / wider area
+- [x] **Tool Upgrade System** (`mbr_upgrades`)
+  - [x] 6 upgradeable tools: hoe, watering can, axe, pickaxe, fishing rod, scythe
+  - [x] Upgrade tiers (basic → copper → iron → gold → crystal)
+  - [x] Upgrade station node with material cost
+  - [x] Upgraded tools work faster / wider area
 
 ---
 
