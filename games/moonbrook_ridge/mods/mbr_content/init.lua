@@ -29,9 +29,9 @@ end
 if mbr and mbr.loot then
 	-- Create a test loot table
 	mbr.loot.register_loot_table("mbr_content:test_chest", {
-		{item = "mbr_items:bread", weight = 10},
-		{item = "mbr_items:water_bottle", weight = 10},
-		{item = "mbr_items:apple", weight = 8},
+		{itemname = "mbr_items:bread", weight = 10},
+		{itemname = "mbr_items:water_bottle", weight = 10},
+		{itemname = "mbr_items:apple", weight = 8},
 	})
 	
 	minetest.log("action", "[MBR Content] Registered test loot table")

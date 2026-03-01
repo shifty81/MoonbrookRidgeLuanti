@@ -47,13 +47,13 @@ if mbr and mbr.crafting then
 	-- Register basic tool materials
 	mbr.crafting.register_material("mbr_items:wood_material", {
 		description = "Wood Material",
-		quality = "normal",
+		quality = mbr.crafting.QUALITY_NORMAL,
 		texture = "default_wood.png",
 	})
 
 	mbr.crafting.register_material("mbr_items:stone_material", {
 		description = "Stone Material",
-		quality = "fine",
+		quality = mbr.crafting.QUALITY_FINE,
 		texture = "default_stone.png",
 	})
 

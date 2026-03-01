@@ -156,8 +156,8 @@ local function check_npc_unlocks(player_name)
 		return
 	end
 	for npc_id, recipes in pairs(NPC_UNLOCK_RECIPES) do
-		local hearts = mbr.npcs.get_friendship and
-			mbr.npcs.get_friendship(player_name, npc_id) or 0
+		local hearts = mbr.npcs.get_hearts and
+			mbr.npcs.get_hearts(player_name, npc_id) or 0
 		if hearts >= 3 then
 			for _, rid in ipairs(recipes) do
 				if mbr_station.discover_recipe(player_name, rid) then
