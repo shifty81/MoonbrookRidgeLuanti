@@ -14,6 +14,8 @@ _G.core = {
 	settings = { get_bool = function() return false end },
 }
 
+dofile("builtin/game/mbr_utils.lua")
+
 _G.ItemStack = function(name)
 	local meta_data = {}
 	return {
