@@ -68,7 +68,7 @@ function mbr.crafting.register_material(itemname, def)
 			mbr.crafting.quality_colors[quality],
 			mbr.crafting.quality_names[quality] .. " " ..
 			(def.description or itemname)),
-		inventory_image = def.texture or "heart.png",
+		inventory_image = def.texture or "[fill:16x16:#888888",
 		groups = {crafting_material = 1, quality = quality},
 	})
 end
@@ -117,7 +117,7 @@ function mbr.crafting.register_recipe(recipe_id, def)
 	if not core.registered_items[def.output] then
 		local item_def = {
 			description = def.description or def.output,
-			inventory_image = def.texture or "heart.png",
+			inventory_image = def.texture or "[fill:16x16:#888888",
 		}
 		if def.tool_caps then
 			item_def.tool_capabilities = def.tool_caps
@@ -449,37 +449,37 @@ core.register_chatcommand("craft", {
 -- Materials at different quality tiers
 mbr.crafting.register_material("mbr:wood_plank", {
 	description = "Wood Plank",
-	texture = "heart.png",
+	texture = "[fill:16x16:#DEB887",
 	quality = QUALITY_NORMAL,
 })
 
 mbr.crafting.register_material("mbr:stone_chunk", {
 	description = "Stone Chunk",
-	texture = "heart.png",
+	texture = "[fill:16x16:#808080",
 	quality = QUALITY_NORMAL,
 })
 
 mbr.crafting.register_material("mbr:copper_ingot", {
 	description = "Copper Ingot",
-	texture = "heart.png",
+	texture = "[fill:16x16:#B87333",
 	quality = QUALITY_FINE,
 })
 
 mbr.crafting.register_material("mbr:iron_ingot", {
 	description = "Iron Ingot",
-	texture = "heart.png",
+	texture = "[fill:16x16:#CCCCCC",
 	quality = QUALITY_SUPERIOR,
 })
 
 mbr.crafting.register_material("mbr:gold_ingot", {
 	description = "Gold Ingot",
-	texture = "heart.png",
+	texture = "[fill:16x16:#FFD700",
 	quality = QUALITY_SUPERIOR,
 })
 
 mbr.crafting.register_material("mbr:crystal_shard", {
 	description = "Crystal Shard",
-	texture = "heart.png",
+	texture = "[fill:16x16:#88CCFF",
 	quality = QUALITY_MASTERWORK,
 })
 
@@ -487,7 +487,7 @@ mbr.crafting.register_material("mbr:crystal_shard", {
 mbr.crafting.register_recipe("wooden_sword", {
 	output = "mbr:wooden_sword",
 	description = "Wooden Sword",
-	texture = "heart.png",
+	texture = "[fill:16x16:#C4A882",
 	category = "weapons",
 	ingredients = {
 		{"mbr:wood_plank", 3},
@@ -502,7 +502,7 @@ mbr.crafting.register_recipe("wooden_sword", {
 mbr.crafting.register_recipe("stone_sword", {
 	output = "mbr:stone_sword",
 	description = "Stone Sword",
-	texture = "heart.png",
+	texture = "[fill:16x16:#A0A0A0",
 	category = "weapons",
 	ingredients = {
 		{"mbr:stone_chunk", 2},
@@ -518,7 +518,7 @@ mbr.crafting.register_recipe("stone_sword", {
 mbr.crafting.register_recipe("iron_sword", {
 	output = "mbr:iron_sword",
 	description = "Iron Sword",
-	texture = "heart.png",
+	texture = "[fill:16x16:#C0C0C0",
 	category = "weapons",
 	ingredients = {
 		{"mbr:iron_ingot", 3},
@@ -534,7 +534,7 @@ mbr.crafting.register_recipe("iron_sword", {
 mbr.crafting.register_recipe("crystal_sword", {
 	output = "mbr:crystal_sword",
 	description = "Crystal Sword",
-	texture = "heart.png",
+	texture = "[fill:16x16:#66BBEE",
 	category = "weapons",
 	ingredients = {
 		{"mbr:crystal_shard", 3},
@@ -550,7 +550,7 @@ mbr.crafting.register_recipe("crystal_sword", {
 mbr.crafting.register_recipe("wooden_pickaxe", {
 	output = "mbr:wooden_pickaxe",
 	description = "Wooden Pickaxe",
-	texture = "heart.png",
+	texture = "[fill:16x16:#C4A882",
 	category = "tools",
 	ingredients = {
 		{"mbr:wood_plank", 5},
@@ -569,7 +569,7 @@ mbr.crafting.register_recipe("wooden_pickaxe", {
 mbr.crafting.register_recipe("iron_pickaxe", {
 	output = "mbr:iron_pickaxe",
 	description = "Iron Pickaxe",
-	texture = "heart.png",
+	texture = "[fill:16x16:#C0C0C0",
 	category = "tools",
 	ingredients = {
 		{"mbr:iron_ingot", 3},
@@ -589,7 +589,7 @@ mbr.crafting.register_recipe("iron_pickaxe", {
 mbr.crafting.register_recipe("iron_hoe", {
 	output = "mbr:iron_hoe",
 	description = "Iron Hoe",
-	texture = "heart.png",
+	texture = "[fill:16x16:#C0C0C0",
 	category = "tools",
 	ingredients = {
 		{"mbr:iron_ingot", 2},
@@ -601,7 +601,7 @@ mbr.crafting.register_recipe("iron_hoe", {
 mbr.crafting.register_recipe("copper_axe", {
 	output = "mbr:copper_axe",
 	description = "Copper Axe",
-	texture = "heart.png",
+	texture = "[fill:16x16:#B87333",
 	category = "tools",
 	ingredients = {
 		{"mbr:copper_ingot", 3},

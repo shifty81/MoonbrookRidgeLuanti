@@ -388,7 +388,7 @@ end
 core.register_craftitem("mbr:identify_scroll", {
 	description = core.colorize("#88DDFF", "Identify Scroll") ..
 		"\n" .. core.colorize("#888888", "Right-click an unidentified item to reveal its stats"),
-	inventory_image = "heart.png",
+	inventory_image = "[fill:16x16:#88DDFF",
 	stack_max = 99,
 	on_use = function(itemstack, user)
 		if not user then return itemstack end
