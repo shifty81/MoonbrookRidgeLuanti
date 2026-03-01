@@ -58,7 +58,8 @@ AFTER (Integrated Game):
    • No game selection menu needed
 
 5. CORE GAME SYSTEMS
-   Location: builtin/game/mbr_*.lua
+   Location: games/moonbrook_ridge/mods/mbr_systems/
+   • mbr_utils.lua - Shared utility functions
    • mbr_time.lua - Time and seasons
    • mbr_survival.lua - Hunger and thirst
    • mbr_weather.lua - Dynamic weather
@@ -68,7 +69,7 @@ AFTER (Integrated Game):
    • mbr_loot.lua - Diablo-style loot
    • mbr_crafting.lua - Quality crafting
    
-   These are loaded by builtin/game/init.lua automatically
+   These are loaded by the mbr_systems mod's init.lua
 
 6. DOCUMENTATION UPDATES
    
@@ -128,11 +129,19 @@ Deleted Files:
 
 Game Content (from previous work):
   ✓ games/moonbrook_ridge/game.conf
-  ✓ games/moonbrook_ridge/mods/mbr_core/
-  ✓ games/moonbrook_ridge/mods/mbr_items/
-  ✓ games/moonbrook_ridge/mods/mbr_tools/
-  ✓ games/moonbrook_ridge/mods/mbr_mapgen/
-  ✓ games/moonbrook_ridge/mods/mbr_content/
+  ✓ games/moonbrook_ridge/mods/mbr_systems/  (Phase 1 core systems)
+  ✓ games/moonbrook_ridge/mods/mbr_core/     (world blocks)
+  ✓ games/moonbrook_ridge/mods/mbr_items/    (food & drink items)
+  ✓ games/moonbrook_ridge/mods/mbr_tools/    (mining & gathering tools)
+  ✓ games/moonbrook_ridge/mods/mbr_mapgen/   (world generation)
+  ✓ games/moonbrook_ridge/mods/mbr_content/  (NPCs, welcome messages, helpers)
+  ✓ games/moonbrook_ridge/mods/mbr_farming/  (Phase 2 crops, soil, watering)
+  ✓ games/moonbrook_ridge/mods/mbr_fishing/  (Phase 2 fishing rod, species, bait)
+  ✓ games/moonbrook_ridge/mods/mbr_mining/   (Phase 2 ores, gems, cave hazards)
+  ✓ games/moonbrook_ridge/mods/mbr_foraging/ (Phase 2 herbs, mushrooms, berries)
+  ✓ games/moonbrook_ridge/mods/mbr_shop/     (Phase 3 economy & merchants)
+  ✓ games/moonbrook_ridge/mods/mbr_station/  (Phase 3 crafting station UI)
+  ✓ games/moonbrook_ridge/mods/mbr_upgrades/ (Phase 3 tool upgrade system)
 
 ════════════════════════════════════════════════════════════════════════
 🏗️ ARCHITECTURE
@@ -141,11 +150,19 @@ Game Content (from previous work):
 Layer 1: GAME CONTENT (games/moonbrook_ridge/mods/)
   ├─ mbr_core: World blocks (stone, dirt, water, trees)
   ├─ mbr_items: Food and drinks
-  ├─ mbr_tools: Mining tools
+  ├─ mbr_tools: Mining and gathering tools
   ├─ mbr_mapgen: World generation
-  └─ mbr_content: NPCs, quests, helpers
+  ├─ mbr_content: NPCs, welcome messages, helpers
+  ├─ mbr_farming: Crops, soil, watering, seasonal growth
+  ├─ mbr_fishing: Fishing rod, fish species, bait
+  ├─ mbr_mining: Ores, gems, cave hazards
+  ├─ mbr_foraging: Wild herbs, mushrooms, berries
+  ├─ mbr_shop: Economy, currency, merchants
+  ├─ mbr_station: Crafting station with recipe discovery
+  └─ mbr_upgrades: Tool upgrade system with tiers
   
-Layer 2: GAME SYSTEMS (builtin/game/mbr_*.lua)
+Layer 2: GAME SYSTEMS (games/moonbrook_ridge/mods/mbr_systems/)
+  ├─ mbr_utils: Shared utility functions
   ├─ mbr_time: Seasons and time tracking
   ├─ mbr_survival: Hunger and thirst
   ├─ mbr_weather: Dynamic weather
@@ -232,6 +249,55 @@ Players don't think about the engine - they play the GAME!
 [✓] Documentation clear about integration
 [✓] Professional appearance and branding
 [✓] Ready for distribution as a product
+
+════════════════════════════════════════════════════════════════════════
+📋 ROADMAP STATUS
+════════════════════════════════════════════════════════════════════════
+
+Phase 1 — Core Engine Systems:            ✅ COMPLETE
+  [✓] Time & Season System (mbr_time)
+  [✓] Survival Mechanics (mbr_survival)
+  [✓] Weather System (mbr_weather)
+  [✓] Particle Effects (mbr_particles)
+  [✓] NPC System (mbr_npcs)
+  [✓] Marriage & Family (mbr_marriage)
+  [✓] Diablo-Style Loot System (mbr_loot)
+  [✓] Quality-Based Crafting System (mbr_crafting)
+
+Phase 2 — Farming & Resource Gathering:   ✅ COMPLETE
+  [✓] Farming System (mbr_farming)
+  [✓] Fishing System (mbr_fishing)
+  [✓] Mining & Cave Exploration (mbr_mining)
+  [✓] Foraging & Gathering (mbr_foraging)
+  [ ] Cave generation with procedural layouts (deferred — deeper mapgen work)
+
+Phase 3 — Economy & Crafting:             ✅ COMPLETE
+  [✓] Crafting Station UI (mbr_station)
+  [✓] Shop System (mbr_shop)
+  [✓] Tool Upgrade System (mbr_upgrades)
+
+Phase 4 — Building & World:               ⏳ NOT STARTED
+  [ ] Building Construction (barn, silo, coop, greenhouse, well)
+  [ ] Multi-Village World (8 biome villages)
+
+Phase 5 — Quests & Events:                ⏳ NOT STARTED
+  [ ] Quest System with journal
+  [ ] Events & Festivals
+
+Phase 6 — Pet Companion System:           ⏳ NOT STARTED
+  [ ] Pet Taming & Types
+  [ ] Pet Levelling & Skills
+  [ ] Pet Charms & Gear
+
+Phase 7 — Combat & Progression:           ⏳ NOT STARTED
+  [ ] Combat System
+  [ ] Player Progression
+
+Phase 8 — Polish & Content:               ⏳ NOT STARTED
+  [ ] Custom Textures & Models
+  [ ] Sound & Music
+  [ ] Save / Load Persistence
+  [ ] Performance & QA
 
 ════════════════════════════════════════════════════════════════════════
 🎮 USER EXPERIENCE
