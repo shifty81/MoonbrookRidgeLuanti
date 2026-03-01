@@ -123,7 +123,7 @@ end
 -- Helpers
 ---------------------------------------------------------------------------
 
-local clamp = mbr.utils.clamp
+local clamp = mbr.utils and mbr.utils.clamp or function(v, mn, mx) return math.max(mn, math.min(mx, v)) end
 
 --- Weighted-random pick from a { key = weight } table.
 local function weighted_pick(weights)

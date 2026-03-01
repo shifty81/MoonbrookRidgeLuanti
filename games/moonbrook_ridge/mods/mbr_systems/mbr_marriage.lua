@@ -7,7 +7,7 @@ mbr.marriage = {
 	children = {},
 }
 
-local clamp = mbr.utils.clamp
+local clamp = mbr.utils and mbr.utils.clamp or function(v, mn, mx) return math.max(mn, math.min(mx, v)) end
 
 -- Constants
 local SEASON_DAYS = 28
@@ -487,6 +487,9 @@ core.register_chatcommand("propose", {
 		end
 
 		-- If param is provided, use it as NPC name
+		if not mbr.npcs or not mbr.npcs.definitions then
+			return false, "NPC system not available."
+		end
 		if param and param ~= "" then
 			-- Normalize: try lowercase match
 			local lower_param = param:lower()

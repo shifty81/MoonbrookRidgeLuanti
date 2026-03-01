@@ -29,7 +29,7 @@ local function init_player_data(name)
 	}
 end
 
-local clamp = mbr.utils.clamp
+local clamp = mbr.utils and mbr.utils.clamp or function(v, mn, mx) return math.max(mn, math.min(mx, v)) end
 
 -- Helper functions
 function mbr.survival.feed_player(player_name, amount)

@@ -9,7 +9,7 @@ mbr.npcs = {
 	schedules = {},
 }
 
-local clamp = mbr.utils.clamp
+local clamp = mbr.utils and mbr.utils.clamp or function(v, mn, mx) return math.max(mn, math.min(mx, v)) end
 
 -- HUD bubble tracking per player
 local bubble_huds = {}

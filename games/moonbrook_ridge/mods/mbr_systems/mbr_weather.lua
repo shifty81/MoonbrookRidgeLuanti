@@ -250,9 +250,6 @@ function mbr.weather._apply_effects(player)
 	end
 
 	-- Store weather speed multiplier for other systems to read
-	if not mbr.weather.speed_overrides then
-		mbr.weather.speed_overrides = {}
-	end
 	mbr.weather.speed_overrides[pname] = wdef.speed_mult or 1.0
 
 	-- HUD weather text
