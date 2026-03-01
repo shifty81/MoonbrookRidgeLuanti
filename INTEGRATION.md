@@ -38,9 +38,10 @@ The game IS the product. The engine is the foundation.
 
 ## Integration Approach
 
-### 1. Core Systems in builtin/game/
-All MoonBrook Ridge systems are integrated into the engine's `builtin/game/` directory:
+### 1. Core Systems in games/moonbrook_ridge/mods/mbr_systems/
+All MoonBrook Ridge game systems are in the `mbr_systems` mod:
 
+- `mbr_utils.lua` - Shared utility functions
 - `mbr_time.lua` - Time and season tracking
 - `mbr_survival.lua` - Hunger and thirst mechanics  
 - `mbr_weather.lua` - Dynamic weather system
@@ -50,16 +51,23 @@ All MoonBrook Ridge systems are integrated into the engine's `builtin/game/` dir
 - `mbr_loot.lua` - Diablo-style loot with rarities
 - `mbr_crafting.lua` - Quality-based crafting
 
-These are loaded automatically by the engine's `builtin/game/init.lua`.
+These are loaded by the `mbr_systems` mod's `init.lua`.
 
-### 2. Game Content in games/moonbrook_ridge/
+### 2. Game Content in games/moonbrook_ridge/mods/
 The game-specific mods provide the actual content:
 
 - `mbr_core` - Basic world blocks (stone, dirt, grass, water, trees)
 - `mbr_items` - Food and drink items
 - `mbr_tools` - Mining and gathering tools
+- `mbr_farming` - Crops, soil, watering, seasonal growth
+- `mbr_fishing` - Fishing rod, fish species, bait
+- `mbr_mining` - Ores, gems, mining tools
+- `mbr_foraging` - Wild herbs, mushrooms, berries
+- `mbr_shop` - Economy, currency, merchants
+- `mbr_station` - Crafting station with recipe discovery
+- `mbr_upgrades` - Tool upgrade system with tiers
+- `mbr_content` - Welcome messages, test content, NPCs
 - `mbr_mapgen` - World generation
-- `mbr_content` - Quests, NPCs, welcome messages
 
 ### 3. Project Branding
 The project itself has been rebranded:
@@ -129,7 +137,7 @@ install(DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/games/moonbrook_ridge"
 
 Developers work with:
 - Engine code in `src/` (C++)
-- Core game systems in `builtin/game/mbr_*.lua` (Lua)
+- Core game systems in `games/moonbrook_ridge/mods/mbr_systems/` (Lua)
 - Game content in `games/moonbrook_ridge/mods/` (Lua)
 
 Building:
