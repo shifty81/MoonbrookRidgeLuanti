@@ -56,12 +56,8 @@ local stage_colors = {
 	"#4a9a3e",
 }
 
--- Quality tiers
-local quality_tiers = {
-	{name = "Normal", chance = 70, multiplier = 1.0},
-	{name = "Silver", chance = 25, multiplier = 1.5},
-	{name = "Gold", chance = 5, multiplier = 2.0},
-}
+-- Quality tiers (used as reference for multipliers)
+-- Normal = 1.0x, Silver = 1.5x, Gold = 2.0x
 
 local function get_random_quality()
 	local roll = math.random(100)
@@ -518,4 +514,4 @@ core.register_chatcommand("crops", {
 	end,
 })
 
-minetest.log("action", "[MBR Farming] Loaded with " .. #all_crop_nodes .. " crop growth stages")
+core.log("action", "[MBR Farming] Loaded with " .. #all_crop_nodes .. " crop growth stages")

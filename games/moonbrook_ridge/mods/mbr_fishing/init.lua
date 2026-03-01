@@ -8,9 +8,9 @@ local fishing_state = {}
 ---------------------------------------------------------------------------
 
 local function is_water(pos)
-	local node = minetest.get_node(pos)
+	local node = core.get_node(pos)
 	if not node then return false end
-	return minetest.get_item_group(node.name, "water") > 0
+	return core.get_item_group(node.name, "water") > 0
 end
 
 local function find_water_near(pos, radius)
@@ -108,7 +108,7 @@ local function register_fish(itemname, fish)
 		end
 		mbr.survival.register_food(itemname, def)
 	else
-		minetest.register_craftitem(itemname, {
+		core.register_craftitem(itemname, {
 			description = fish.desc,
 			inventory_image = "[fill:16x16:0,0:" .. fish.color,
 			on_use = function(itemstack, user)
@@ -132,17 +132,17 @@ end
 -- Bait items
 ---------------------------------------------------------------------------
 
-minetest.register_craftitem("mbr_fishing:worm", {
+core.register_craftitem("mbr_fishing:worm", {
 	description = "Worm\nBasic bait - +10% catch rate",
 	inventory_image = "[fill:16x16:0,0:#8B4513",
 })
 
-minetest.register_craftitem("mbr_fishing:fancy_bait", {
+core.register_craftitem("mbr_fishing:fancy_bait", {
 	description = "Fancy Bait\nGood bait - +25% catch rate",
 	inventory_image = "[fill:16x16:0,0:#DAA520",
 })
 
-minetest.register_craft({
+core.register_craft({
 	type = "shapeless",
 	output = "mbr_fishing:fancy_bait",
 	recipe = {"mbr_fishing:worm", "mbr_items:bread"},
@@ -150,10 +150,10 @@ minetest.register_craft({
 
 -- Drop worms when digging dirt
 local function override_dirt_for_worms(nodename)
-	local old_def = minetest.registered_nodes[nodename]
+	local old_def = core.registered_nodes[nodename]
 	if not old_def then return end
 	local old_after_dig = old_def.after_dig_node
-	minetest.override_item(nodename, {
+	core.override_item(nodename, {
 		after_dig_node = function(pos, oldnode, oldmetadata, digger)
 			if old_after_dig then
 				old_after_dig(pos, oldnode, oldmetadata, digger)
@@ -162,7 +162,7 @@ local function override_dirt_for_worms(nodename)
 				local inv = digger:get_inventory()
 				if inv then
 					inv:add_item("main", "mbr_fishing:worm")
-					minetest.chat_send_player(
+					core.chat_send_player(
 						digger:get_player_name(), "You found a worm!")
 				end
 			end
@@ -170,7 +170,7 @@ local function override_dirt_for_worms(nodename)
 	})
 end
 
-minetest.register_on_mods_loaded(function()
+core.register_on_mods_loaded(function()
 	override_dirt_for_worms("mbr_core:dirt")
 	override_dirt_for_worms("mbr_core:dirt_with_grass")
 end)
@@ -293,7 +293,7 @@ local function start_fishing(player, itemstack)
 
 	-- Phase: biting -> reel in attempt
 	if state and state.phase == "biting" then
-		local elapsed = minetest.get_us_time() / 1000000 - state.bite_time
+		local elapsed = core.get_us_time() / 1000000 - state.bite_time
 		if elapsed <= state.window then
 			local fish_item = state.catch_item
 			local fish_desc = state.catch_desc
@@ -307,12 +307,12 @@ local function start_fishing(player, itemstack)
 				if rarity == "legendary" then
 					msg = "LEGENDARY CATCH! You caught a " .. fish_desc .. "!!"
 				end
-				minetest.chat_send_player(name, msg)
+				core.chat_send_player(name, msg)
 			else
-				minetest.chat_send_player(name, "The line came up empty.")
+				core.chat_send_player(name, "The line came up empty.")
 			end
 		else
-			minetest.chat_send_player(name, "The fish got away!")
+			core.chat_send_player(name, "The fish got away!")
 		end
 		fishing_state[name] = nil
 		return itemstack
@@ -320,7 +320,7 @@ local function start_fishing(player, itemstack)
 
 	-- Phase: already casting
 	if state and state.phase == "casting" then
-		minetest.chat_send_player(name,
+		core.chat_send_player(name,
 			"You already have a line in the water. Be patient!")
 		return itemstack
 	end
@@ -328,7 +328,7 @@ local function start_fishing(player, itemstack)
 	-- Check for water nearby
 	local pos = player:get_pos()
 	if not find_water_near(pos) then
-		minetest.chat_send_player(name,
+		core.chat_send_player(name,
 			"You need to be near water to fish!")
 		return itemstack
 	end
@@ -341,10 +341,10 @@ local function start_fishing(player, itemstack)
 		if bait_type == "mbr_fishing:fancy_bait" then
 			bait_label = "Fancy Bait"
 		end
-		minetest.chat_send_player(name,
+		core.chat_send_player(name,
 			"You cast your line... (using " .. bait_label .. ")")
 	else
-		minetest.chat_send_player(name, "You cast your line...")
+		core.chat_send_player(name, "You cast your line...")
 	end
 
 	-- Pre-determine the catch and timing window
@@ -363,32 +363,32 @@ local function start_fishing(player, itemstack)
 
 	-- Random delay before bite (5-15 seconds)
 	local delay = math.random(5, 15)
-	minetest.after(delay, function()
+	core.after(delay, function()
 		local current = fishing_state[name]
 		if not current or current.phase ~= "casting" then
 			return
 		end
 
-		local p = minetest.get_player_by_name(name)
+		local p = core.get_player_by_name(name)
 		if not p then
 			fishing_state[name] = nil
 			return
 		end
 
 		current.phase = "biting"
-		current.bite_time = minetest.get_us_time() / 1000000
+		current.bite_time = core.get_us_time() / 1000000
 
-		minetest.chat_send_player(name,
+		core.chat_send_player(name,
 			"Something's biting! Right-click again to reel in!")
 
 		-- Expire the window
-		minetest.after(current.window, function()
+		core.after(current.window, function()
 			local s = fishing_state[name]
 			if s and s.phase == "biting" then
 				fishing_state[name] = nil
-				local pp = minetest.get_player_by_name(name)
+				local pp = core.get_player_by_name(name)
 				if pp then
-					minetest.chat_send_player(name, "The fish got away!")
+					core.chat_send_player(name, "The fish got away!")
 				end
 			end
 		end)
@@ -401,7 +401,7 @@ end
 -- Fishing rod tools
 ---------------------------------------------------------------------------
 
-minetest.register_tool("mbr_fishing:fishing_rod", {
+core.register_tool("mbr_fishing:fishing_rod", {
 	description = "Fishing Rod",
 	inventory_image = "[fill:16x16:0,0:#8B6914",
 	tool_capabilities = {
@@ -419,7 +419,7 @@ minetest.register_tool("mbr_fishing:fishing_rod", {
 	end,
 })
 
-minetest.register_tool("mbr_fishing:fishing_rod_baited", {
+core.register_tool("mbr_fishing:fishing_rod_baited", {
 	description = "Fishing Rod (Baited)",
 	inventory_image = "[fill:16x16:0,0:#A0822B",
 	tool_capabilities = {
@@ -441,7 +441,7 @@ minetest.register_tool("mbr_fishing:fishing_rod_baited", {
 -- Craft recipes
 ---------------------------------------------------------------------------
 
-minetest.register_craft({
+core.register_craft({
 	output = "mbr_fishing:fishing_rod",
 	recipe = {
 		{"", "", "mbr_core:wood"},
@@ -450,7 +450,7 @@ minetest.register_craft({
 	},
 })
 
-minetest.register_craft({
+core.register_craft({
 	type = "shapeless",
 	output = "mbr_fishing:fishing_rod_baited",
 	recipe = {"mbr_fishing:fishing_rod", "mbr_fishing:worm"},
@@ -460,7 +460,7 @@ minetest.register_craft({
 -- Cleanup on player leave
 ---------------------------------------------------------------------------
 
-minetest.register_on_leaveplayer(function(player)
+core.register_on_leaveplayer(function(player)
 	fishing_state[player:get_player_name()] = nil
 end)
 
@@ -468,7 +468,7 @@ end)
 -- /fish_guide chat command
 ---------------------------------------------------------------------------
 
-minetest.register_chatcommand("fish_guide", {
+core.register_chatcommand("fish_guide", {
 	description = "Shows available fish for the current season",
 	func = function(name)
 		local season = get_season()
@@ -515,4 +515,4 @@ minetest.register_chatcommand("fish_guide", {
 	end,
 })
 
-minetest.log("action", "[MBR Fishing] Loaded")
+core.log("action", "[MBR Fishing] Loaded")

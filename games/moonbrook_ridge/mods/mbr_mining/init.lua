@@ -6,11 +6,21 @@
 ---------------------------------------------------------------------------
 
 local ore_defs = {
-	{name = "copper",  desc = "Copper Ore",  color = "#b87333", cracky = 3, y_min = -128,  y_max = -16,   scarcity = 512,  clust_num = 5, clust_size = 3},
-	{name = "iron",    desc = "Iron Ore",    color = "#808080", cracky = 3, y_min = -256,  y_max = -32,   scarcity = 729,  clust_num = 4, clust_size = 3},
-	{name = "silver",  desc = "Silver Ore",  color = "#c0c0c0", cracky = 2, y_min = -512,  y_max = -64,   scarcity = 1000, clust_num = 4, clust_size = 3},
-	{name = "gold",    desc = "Gold Ore",    color = "#ffd700", cracky = 2, y_min = -1024, y_max = -128,  scarcity = 1728, clust_num = 3, clust_size = 2},
-	{name = "crystal", desc = "Crystal Ore", color = "#88ccff", cracky = 2, y_min = -2048, y_max = -256,  scarcity = 2744, clust_num = 2, clust_size = 2},
+	{name = "copper", desc = "Copper Ore", color = "#b87333",
+		cracky = 3, y_min = -128, y_max = -16,
+		scarcity = 512, clust_num = 5, clust_size = 3},
+	{name = "iron", desc = "Iron Ore", color = "#808080",
+		cracky = 3, y_min = -256, y_max = -32,
+		scarcity = 729, clust_num = 4, clust_size = 3},
+	{name = "silver", desc = "Silver Ore", color = "#c0c0c0",
+		cracky = 2, y_min = -512, y_max = -64,
+		scarcity = 1000, clust_num = 4, clust_size = 3},
+	{name = "gold", desc = "Gold Ore", color = "#ffd700",
+		cracky = 2, y_min = -1024, y_max = -128,
+		scarcity = 1728, clust_num = 3, clust_size = 2},
+	{name = "crystal", desc = "Crystal Ore", color = "#88ccff",
+		cracky = 2, y_min = -2048, y_max = -256,
+		scarcity = 2744, clust_num = 2, clust_size = 2},
 }
 
 for _, def in ipairs(ore_defs) do
@@ -60,10 +70,18 @@ end
 ---------------------------------------------------------------------------
 
 local gem_defs = {
-	{name = "ruby",     desc = "Ruby Ore",     color = "#cc0033", gem_desc = "Ruby",     y_min = -512,  y_max = -64,  scarcity = 1331},
-	{name = "sapphire", desc = "Sapphire Ore", color = "#0033cc", gem_desc = "Sapphire", y_min = -512,  y_max = -64,  scarcity = 1331},
-	{name = "emerald",  desc = "Emerald Ore",  color = "#00cc33", gem_desc = "Emerald",  y_min = -1024, y_max = -128, scarcity = 2197},
-	{name = "diamond",  desc = "Diamond Ore",  color = "#ccddff", gem_desc = "Diamond",  y_min = -2048, y_max = -256, scarcity = 3375},
+	{name = "ruby", desc = "Ruby Ore", color = "#cc0033",
+		gem_desc = "Ruby", y_min = -512, y_max = -64,
+		scarcity = 1331},
+	{name = "sapphire", desc = "Sapphire Ore", color = "#0033cc",
+		gem_desc = "Sapphire", y_min = -512, y_max = -64,
+		scarcity = 1331},
+	{name = "emerald", desc = "Emerald Ore", color = "#00cc33",
+		gem_desc = "Emerald", y_min = -1024, y_max = -128,
+		scarcity = 2197},
+	{name = "diamond", desc = "Diamond Ore", color = "#ccddff",
+		gem_desc = "Diamond", y_min = -2048, y_max = -256,
+		scarcity = 3375},
 }
 
 for _, def in ipairs(gem_defs) do
@@ -99,11 +117,21 @@ end
 ---------------------------------------------------------------------------
 
 local pick_defs = {
-	{name = "copper",  desc = "Copper Pickaxe",  color = "#b87333", caps = {cracky = {times = {[1] = 4.0, [2] = 2.0, [3] = 1.0}, uses = 20, maxlevel = 2}}, dmg = 3},
-	{name = "iron",    desc = "Iron Pickaxe",    color = "#808080", caps = {cracky = {times = {[1] = 3.0, [2] = 1.5, [3] = 0.8}, uses = 30, maxlevel = 3}}, dmg = 4},
-	{name = "silver",  desc = "Silver Pickaxe",  color = "#c0c0c0", caps = {cracky = {times = {[1] = 2.5, [2] = 1.2, [3] = 0.6}, uses = 25, maxlevel = 3}}, dmg = 4},
-	{name = "gold",    desc = "Gold Pickaxe",    color = "#ffd700", caps = {cracky = {times = {[1] = 2.0, [2] = 1.0, [3] = 0.5}, uses = 100, maxlevel = 3}}, dmg = 3},
-	{name = "crystal", desc = "Crystal Pickaxe", color = "#88ccff", caps = {cracky = {times = {[1] = 1.5, [2] = 0.8, [3] = 0.4}, uses = 40, maxlevel = 4}}, dmg = 5},
+	{name = "copper", desc = "Copper Pickaxe", color = "#b87333", dmg = 3,
+		caps = {cracky = {times = {[1] = 4.0, [2] = 2.0, [3] = 1.0},
+			uses = 20, maxlevel = 2}}},
+	{name = "iron", desc = "Iron Pickaxe", color = "#808080", dmg = 4,
+		caps = {cracky = {times = {[1] = 3.0, [2] = 1.5, [3] = 0.8},
+			uses = 30, maxlevel = 3}}},
+	{name = "silver", desc = "Silver Pickaxe", color = "#c0c0c0", dmg = 4,
+		caps = {cracky = {times = {[1] = 2.5, [2] = 1.2, [3] = 0.6},
+			uses = 25, maxlevel = 3}}},
+	{name = "gold", desc = "Gold Pickaxe", color = "#ffd700", dmg = 3,
+		caps = {cracky = {times = {[1] = 2.0, [2] = 1.0, [3] = 0.5},
+			uses = 100, maxlevel = 3}}},
+	{name = "crystal", desc = "Crystal Pickaxe", color = "#88ccff", dmg = 5,
+		caps = {cracky = {times = {[1] = 1.5, [2] = 0.8, [3] = 0.4},
+			uses = 40, maxlevel = 4}}},
 }
 
 for _, def in ipairs(pick_defs) do
@@ -119,10 +147,11 @@ for _, def in ipairs(pick_defs) do
 	})
 
 	-- Craft: 3 ingots on top, 2 wood planks as handle
+	local ingot = "mbr_mining:" .. def.name .. "_ingot"
 	core.register_craft({
 		output = "mbr_mining:pick_" .. def.name,
 		recipe = {
-			{"mbr_mining:" .. def.name .. "_ingot", "mbr_mining:" .. def.name .. "_ingot", "mbr_mining:" .. def.name .. "_ingot"},
+			{ingot, ingot, ingot},
 			{"", "mbr_core:wood", ""},
 			{"", "mbr_core:wood", ""},
 		},
@@ -282,4 +311,4 @@ core.register_chatcommand("mining_guide", {
 	end,
 })
 
-minetest.log("action", "[MBR Mining] Loaded with ores, gems, tools, and cave content")
+core.log("action", "[MBR Mining] Loaded with ores, gems, tools, and cave content")

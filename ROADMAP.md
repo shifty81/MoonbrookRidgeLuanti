@@ -83,35 +83,35 @@ These systems form the foundation that every other feature depends on.
 
 ---
 
-## Phase 2 — Farming & Resource Gathering
+## Phase 2 — Farming & Resource Gathering *(complete)*
 
-- [ ] **Farming System**
-  - [ ] Crop nodes (wheat, corn, tomato, potato, carrot, pumpkin, strawberry)
-  - [ ] Growth stages (seed → sprout → mature → harvestable)
-  - [ ] Watering mechanic (manual + rain auto-water integration)
-  - [ ] Seasonal crop availability
-  - [ ] Soil preparation with hoe
-  - [ ] Fertiliser to speed growth
-  - [ ] Crop quality tiers (normal / silver / gold)
+- [x] **Farming System** (`mbr_farming`)
+  - [x] Crop nodes (wheat, corn, tomato, potato, carrot, pumpkin, strawberry)
+  - [x] Growth stages (seed → sprout → mature → harvestable)
+  - [x] Watering mechanic (manual + rain auto-water integration)
+  - [x] Seasonal crop availability
+  - [x] Soil preparation with hoe
+  - [x] Fertiliser to speed growth
+  - [x] Crop quality tiers (normal / silver / gold)
 
-- [ ] **Fishing System**
-  - [ ] Fishing rod tool with cast / reel mechanic
-  - [ ] Fish species per biome / season
-  - [ ] Fishing mini-game (timing-based)
-  - [ ] Bait items that affect catch rates
-  - [ ] Legendary rare catches
+- [x] **Fishing System** (`mbr_fishing`)
+  - [x] Fishing rod tool with cast / reel mechanic
+  - [x] Fish species per biome / season
+  - [x] Fishing mini-game (timing-based)
+  - [x] Bait items that affect catch rates
+  - [x] Legendary rare catches
 
-- [ ] **Mining & Cave Exploration**
-  - [ ] Ore nodes (copper, iron, silver, gold, crystal)
-  - [ ] Gem nodes for crafting & gifting
+- [x] **Mining & Cave Exploration** (`mbr_mining`)
+  - [x] Ore nodes (copper, iron, silver, gold, crystal)
+  - [x] Gem nodes for crafting & gifting
   - [ ] Cave generation with procedural layouts
-  - [ ] Mining tool tiers (stone → copper → iron → gold → crystal)
-  - [ ] Cave hazards (collapse, gas, lava)
+  - [x] Mining tool tiers (stone → copper → iron → gold → crystal)
+  - [x] Cave hazards (collapse, gas, lava)
 
-- [ ] **Foraging & Gathering**
-  - [ ] Wild herbs, mushrooms, berries (biome-specific)
-  - [ ] Seasonal spawn variation
-  - [ ] Rare forageables for crafting recipes
+- [x] **Foraging & Gathering** (`mbr_foraging`)
+  - [x] Wild herbs, mushrooms, berries (biome-specific)
+  - [x] Seasonal spawn variation
+  - [x] Rare forageables for crafting recipes
 
 ---
 

@@ -1,8 +1,6 @@
 -- MoonBrook Ridge Foraging & Gathering Mod
 -- Wild herbs, mushrooms, berries, and forageable items
 
-local modname = "mbr_foraging"
-
 -- Helper: get current season name safely
 local function get_current_season()
 	if mbr and mbr.time then
@@ -40,7 +38,7 @@ core.register_node("mbr_foraging:herb_mint", {
 				inv:add_item("main", "mbr_foraging:four_leaf_clover")
 			end
 		end
-		return minetest.node_dig(pos, node, digger)
+		return core.node_dig(pos, node, digger)
 	end,
 })
 
@@ -63,7 +61,7 @@ core.register_node("mbr_foraging:herb_basil", {
 				inv:add_item("main", "mbr_foraging:ancient_root")
 			end
 		end
-		return minetest.node_dig(pos, node, digger)
+		return core.node_dig(pos, node, digger)
 	end,
 })
 
@@ -86,7 +84,7 @@ core.register_node("mbr_foraging:herb_lavender", {
 				inv:add_item("main", "mbr_foraging:fairy_dust")
 			end
 		end
-		return minetest.node_dig(pos, node, digger)
+		return core.node_dig(pos, node, digger)
 	end,
 })
 
@@ -109,7 +107,7 @@ core.register_node("mbr_foraging:herb_ginseng", {
 				inv:add_item("main", "mbr_foraging:fairy_dust")
 			end
 		end
-		return minetest.node_dig(pos, node, digger)
+		return core.node_dig(pos, node, digger)
 	end,
 })
 
@@ -136,7 +134,7 @@ core.register_node("mbr_foraging:mushroom_button", {
 				inv:add_item("main", "mbr_foraging:ancient_root")
 			end
 		end
-		return minetest.node_dig(pos, node, digger)
+		return core.node_dig(pos, node, digger)
 	end,
 })
 
@@ -159,7 +157,7 @@ core.register_node("mbr_foraging:mushroom_chanterelle", {
 				inv:add_item("main", "mbr_foraging:fairy_dust")
 			end
 		end
-		return minetest.node_dig(pos, node, digger)
+		return core.node_dig(pos, node, digger)
 	end,
 })
 
@@ -182,7 +180,7 @@ core.register_node("mbr_foraging:mushroom_morel", {
 				inv:add_item("main", "mbr_foraging:ancient_root")
 			end
 		end
-		return minetest.node_dig(pos, node, digger)
+		return core.node_dig(pos, node, digger)
 	end,
 })
 
@@ -205,7 +203,7 @@ core.register_node("mbr_foraging:mushroom_truffle", {
 				inv:add_item("main", "mbr_foraging:four_leaf_clover")
 			end
 		end
-		return minetest.node_dig(pos, node, digger)
+		return core.node_dig(pos, node, digger)
 	end,
 })
 
@@ -242,7 +240,7 @@ local function register_berry_bush(name, def)
 		drop = "mbr_foraging:" .. name,
 		after_dig_node = function(pos, oldnode, oldmetadata, digger)
 			-- Place bare bush for regrowth
-			minetest.set_node(pos, {name = "mbr_foraging:bush_bare"})
+			core.set_node(pos, {name = "mbr_foraging:bush_bare"})
 			-- Rare forageable drop chance
 			if digger and math.random(100) <= 5 then
 				local inv = digger:get_inventory()
@@ -392,9 +390,9 @@ if mbr and mbr.survival then
 		thirst_restore = 5,
 	})
 
-	minetest.log("action", "[MBR Foraging] Registered food items with survival system")
+	core.log("action", "[MBR Foraging] Registered food items with survival system")
 else
-	minetest.log("warning", "[MBR Foraging] MBR survival system not found, food effects unavailable")
+	core.log("warning", "[MBR Foraging] MBR survival system not found, food effects unavailable")
 end
 
 --------------------------------------------------------------------------------
@@ -402,7 +400,7 @@ end
 --------------------------------------------------------------------------------
 
 -- Herbal Tea: lavender + mint + water_bottle
-if minetest.registered_items["mbr_items:water_bottle"] then
+if core.registered_items["mbr_items:water_bottle"] then
 	core.register_craft({
 		output = "mbr_foraging:herbal_tea",
 		recipe = {
@@ -413,7 +411,7 @@ end
 
 -- Mushroom Stew: 2 mushrooms (any) + potato (if exists)
 local stew_ingredient = "mbr_items:potato"
-if not minetest.registered_items[stew_ingredient] then
+if not core.registered_items[stew_ingredient] then
 	stew_ingredient = "mbr_foraging:mushroom_button"
 end
 core.register_craft({
@@ -469,13 +467,13 @@ core.register_abm({
 	chance = 50,
 	action = function(pos, node)
 		local above = {x = pos.x, y = pos.y + 1, z = pos.z}
-		local above_node = minetest.get_node(above)
+		local above_node = core.get_node(above)
 		if above_node.name ~= "air" then
 			return
 		end
 
 		-- Check light level (not in caves)
-		local light = minetest.get_node_light(above, 0.5)
+		local light = core.get_node_light(above, 0.5)
 		if not light or light < 10 then
 			return
 		end
@@ -488,12 +486,12 @@ core.register_abm({
 
 		-- Ginseng: any season but very low chance
 		if math.random(200) == 1 then
-			minetest.set_node(above, {name = "mbr_foraging:herb_ginseng"})
+			core.set_node(above, {name = "mbr_foraging:herb_ginseng"})
 			return
 		end
 
 		local chosen = spawns[math.random(#spawns)]
-		minetest.set_node(above, {name = chosen})
+		core.set_node(above, {name = chosen})
 	end,
 })
 
@@ -530,7 +528,7 @@ core.register_abm({
 		end
 
 		local chosen = berries[math.random(#berries)]
-		minetest.set_node(pos, {name = chosen})
+		core.set_node(pos, {name = chosen})
 	end,
 })
 
@@ -683,4 +681,4 @@ core.register_chatcommand("forage_guide", {
 	end,
 })
 
-minetest.log("action", "[MBR Foraging] Loaded with herbs, mushrooms, berries, and seasonal foraging")
+core.log("action", "[MBR Foraging] Loaded with herbs, mushrooms, berries, and seasonal foraging")
