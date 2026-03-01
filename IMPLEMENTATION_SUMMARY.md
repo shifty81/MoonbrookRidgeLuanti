@@ -2,7 +2,7 @@
 
 ## What Was Done
 
-This PR sets up the MoonBrook Ridge game to be loadable and testable in Luanti (formerly Minetest). The game now uses existing project assets from the `builtin/game/mbr_*.lua` systems and provides a complete playable experience.
+This PR sets up the MoonBrook Ridge game to be loadable and testable. The game systems live in `games/moonbrook_ridge/mods/mbr_systems/` and provide a complete playable experience.
 
 ## Structure Created
 
