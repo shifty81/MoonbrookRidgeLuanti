@@ -11,7 +11,7 @@ _G.core = {
 	settings = { get_bool = function() return false end },
 }
 
-dofile("builtin/game/mbr_time.lua")
+dofile("games/moonbrook_ridge/mods/mbr_systems/mbr_time.lua")
 
 describe("mbr.time", function()
 

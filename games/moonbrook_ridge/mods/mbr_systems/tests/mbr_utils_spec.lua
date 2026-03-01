@@ -5,7 +5,7 @@ _G.core = {
 	settings = { get_bool = function() return false end },
 }
 
-dofile("builtin/game/mbr_utils.lua")
+dofile("games/moonbrook_ridge/mods/mbr_systems/mbr_utils.lua")
 
 local FILLED_HEART = "\xe2\x99\xa5"  -- ♥
 local EMPTY_HEART  = "\xe2\x99\xa1"  -- ♡
