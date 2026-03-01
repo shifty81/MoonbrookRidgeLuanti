@@ -58,9 +58,14 @@ with dynamic seasons and weather.
 | Marriage & family system | ✅ Implemented |
 | Diablo-style loot system (5 rarity tiers, random affixes) | ✅ Implemented & Testable |
 | Quality-based crafting (material quality → output quality) | ✅ Implemented & Testable |
+| Farming (7 crops, growth stages, watering, seasons) | ✅ Implemented |
+| Fishing (rod, species per biome/season, bait, mini-game) | ✅ Implemented |
+| Mining (ores, gems, tool tiers, cave hazards) | ✅ Implemented |
+| Foraging (herbs, mushrooms, berries, biome-specific) | ✅ Implemented |
+| Shop & economy (buy/sell, NPC merchants, supply/demand) | ✅ Implemented |
+| Crafting station UI (recipe discovery, category tabs) | ✅ Implemented |
+| Tool upgrade system (6 tools, 5 tiers) | ✅ Implemented |
 | **Playable game with basic world & items** | ✅ **Ready to Test!** |
-| Farming, fishing, mining | 🔜 Planned |
-| Shop & economy | 🔜 Planned |
 | Multi-village world (8 biomes) | 🔜 Planned |
 | Quest system | 🔜 Planned |
 | Pet companion system | 🔜 Planned |
@@ -76,7 +81,7 @@ MoonBrook Ridge is built as a **complete game** on the Luanti engine:
 
 - **Engine**: Luanti 5.16.0 - A powerful, open-source voxel game engine
 - **Game**: MoonBrook Ridge - Fully integrated farming & life simulation
-- **Integration**: All MBR systems (`mbr_time`, `mbr_survival`, `mbr_weather`, etc.) are built directly into the engine's `builtin/game/` core
+- **Integration**: All MBR systems (`mbr_time`, `mbr_survival`, `mbr_weather`, etc.) live in `games/moonbrook_ridge/mods/mbr_systems/`
 - **Content**: Game-specific mods provide blocks, items, NPCs, and world generation
 
 This is **NOT** a mod or game selection - MoonBrook Ridge is the primary game experience. Think of it like Stardew Valley or Minecraft - it's a complete, standalone game that happens to use a powerful voxel engine.
