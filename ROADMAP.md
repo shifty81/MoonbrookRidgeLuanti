@@ -104,7 +104,7 @@ These systems form the foundation that every other feature depends on.
 - [x] **Mining & Cave Exploration** (`mbr_mining`)
   - [x] Ore nodes (copper, iron, silver, gold, crystal)
   - [x] Gem nodes for crafting & gifting
-  - [ ] Cave generation with procedural layouts
+  - [ ] Cave generation with procedural layouts *(deferred — requires deeper mapgen work)*
   - [x] Mining tool tiers (stone → copper → iron → gold → crystal)
   - [x] Cave hazards (collapse, gas, lava)
 
