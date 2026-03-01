@@ -979,7 +979,7 @@ name (Admin name) string
 [**Serverlist and MOTD]
 
 #    Name of the server, to be displayed when players join and in the serverlist.
-server_name (Server name) string Luanti server
+server_name (Server name) string MoonBrook Ridge Server
 
 #    Description of server, to be displayed when players join and in the serverlist.
 server_description (Server description) string mine here

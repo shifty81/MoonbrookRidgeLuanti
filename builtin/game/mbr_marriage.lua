@@ -7,12 +7,7 @@ mbr.marriage = {
 	children = {},
 }
 
--- Helpers
-local function clamp(val, min_v, max_v)
-	if val < min_v then return min_v end
-	if val > max_v then return max_v end
-	return val
-end
+local clamp = mbr.utils.clamp
 
 -- Constants
 local SEASON_DAYS = 28

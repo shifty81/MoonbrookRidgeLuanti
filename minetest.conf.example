@@ -1128,7 +1128,7 @@
 
 #    Name of the server, to be displayed when players join and in the serverlist.
 #    type: string
-# server_name = Luanti server
+# server_name = MoonBrook Ridge Server
 
 #    Description of server, to be displayed when players join and in the serverlist.
 #    type: string

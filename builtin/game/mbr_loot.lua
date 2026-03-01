@@ -123,11 +123,7 @@ end
 -- Helpers
 ---------------------------------------------------------------------------
 
-local function clamp(v, lo, hi)
-	if v < lo then return lo end
-	if v > hi then return hi end
-	return v
-end
+local clamp = mbr.utils.clamp
 
 --- Weighted-random pick from a { key = weight } table.
 local function weighted_pick(weights)

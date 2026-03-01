@@ -117,74 +117,63 @@ local function color_to_hex(c)
 	return string.format("#%02X%02X%02X", c.r, c.g, c.b)
 end
 
-local function spawn_rain_particles(player)
-	local ppos = player:get_pos()
-	local pname = player:get_player_name()
-	if mbr.weather.particle_ids[pname] then
-		core.delete_particlespawner(mbr.weather.particle_ids[pname])
-	end
-	mbr.weather.particle_ids[pname] = core.add_particlespawner({
-		amount = 80,
-		time = 3,
-		minpos = {x = ppos.x - 15, y = ppos.y + 8, z = ppos.z - 15},
-		maxpos = {x = ppos.x + 15, y = ppos.y + 15, z = ppos.z + 15},
+-- Particle presets for each precipitation type
+local precipitation_presets = {
+	rainy = {
+		amount = 80, spread = 15, height_min = 8, height_max = 15,
 		minvel = {x = -0.5, y = -8, z = -0.5},
 		maxvel = {x = 0.5, y = -12, z = 0.5},
 		minacc = {x = 0, y = -2, z = 0},
 		maxacc = {x = 0, y = -2, z = 0},
-		minexptime = 0.8,
-		maxexptime = 1.5,
-		minsize = 0.5,
-		maxsize = 1.0,
+		minexptime = 0.8, maxexptime = 1.5,
+		minsize = 0.5, maxsize = 1.0,
 		texture = "[fill:2x4:#4169E1",
-		playername = pname,
-	})
-end
-
-local function spawn_snow_particles(player)
-	local ppos = player:get_pos()
-	local pname = player:get_player_name()
-	if mbr.weather.particle_ids[pname] then
-		core.delete_particlespawner(mbr.weather.particle_ids[pname])
-	end
-	mbr.weather.particle_ids[pname] = core.add_particlespawner({
-		amount = 60,
-		time = 3,
-		minpos = {x = ppos.x - 15, y = ppos.y + 8, z = ppos.z - 15},
-		maxpos = {x = ppos.x + 15, y = ppos.y + 15, z = ppos.z + 15},
+	},
+	snowy = {
+		amount = 60, spread = 15, height_min = 8, height_max = 15,
 		minvel = {x = -1, y = -2, z = -1},
 		maxvel = {x = 1, y = -4, z = 1},
 		minacc = {x = 0, y = -0.5, z = 0},
 		maxacc = {x = 0, y = -0.5, z = 0},
-		minexptime = 2,
-		maxexptime = 4,
-		minsize = 1.0,
-		maxsize = 2.0,
+		minexptime = 2, maxexptime = 4,
+		minsize = 1.0, maxsize = 2.0,
 		texture = "[fill:4x4:#FFFFFF",
-		playername = pname,
-	})
-end
+	},
+	stormy = {
+		amount = 150, spread = 20, height_min = 8, height_max = 18,
+		minvel = {x = -2, y = -12, z = -2},
+		maxvel = {x = 2, y = -18, z = 2},
+		minacc = {x = 0, y = -3, z = 0},
+		maxacc = {x = 0, y = -3, z = 0},
+		minexptime = 0.5, maxexptime = 1.0,
+		minsize = 0.5, maxsize = 1.5,
+		texture = "[fill:2x4:#4169E1",
+	},
+}
 
-local function spawn_storm_particles(player)
+local function spawn_precipitation(player, preset_name)
+	local preset = precipitation_presets[preset_name]
+	if not preset then return end
 	local ppos = player:get_pos()
 	local pname = player:get_player_name()
 	if mbr.weather.particle_ids[pname] then
 		core.delete_particlespawner(mbr.weather.particle_ids[pname])
 	end
+	local s = preset.spread
 	mbr.weather.particle_ids[pname] = core.add_particlespawner({
-		amount = 150,
+		amount = preset.amount,
 		time = 3,
-		minpos = {x = ppos.x - 20, y = ppos.y + 8, z = ppos.z - 20},
-		maxpos = {x = ppos.x + 20, y = ppos.y + 18, z = ppos.z + 20},
-		minvel = {x = -2, y = -12, z = -2},
-		maxvel = {x = 2, y = -18, z = 2},
-		minacc = {x = 0, y = -3, z = 0},
-		maxacc = {x = 0, y = -3, z = 0},
-		minexptime = 0.5,
-		maxexptime = 1.0,
-		minsize = 0.5,
-		maxsize = 1.5,
-		texture = "[fill:2x4:#4169E1",
+		minpos = {x = ppos.x - s, y = ppos.y + preset.height_min, z = ppos.z - s},
+		maxpos = {x = ppos.x + s, y = ppos.y + preset.height_max, z = ppos.z + s},
+		minvel = preset.minvel,
+		maxvel = preset.maxvel,
+		minacc = preset.minacc,
+		maxacc = preset.maxacc,
+		minexptime = preset.minexptime,
+		maxexptime = preset.maxexptime,
+		minsize = preset.minsize,
+		maxsize = preset.maxsize,
+		texture = preset.texture,
 		playername = pname,
 	})
 end
@@ -255,13 +244,7 @@ function mbr.weather._apply_effects(player)
 
 	-- Particles
 	if wdef.has_particles then
-		if wtype == "rainy" then
-			spawn_rain_particles(player)
-		elseif wtype == "snowy" then
-			spawn_snow_particles(player)
-		elseif wtype == "stormy" then
-			spawn_storm_particles(player)
-		end
+		spawn_precipitation(player, wtype)
 	else
 		clear_particles(player)
 	end
