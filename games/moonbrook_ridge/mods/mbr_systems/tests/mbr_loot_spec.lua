@@ -14,7 +14,7 @@ _G.core = {
 	settings = { get_bool = function() return false end },
 }
 
-dofile("builtin/game/mbr_utils.lua")
+dofile("games/moonbrook_ridge/mods/mbr_systems/mbr_utils.lua")
 
 _G.ItemStack = function(name)
 	local meta_data = {}
@@ -32,7 +32,7 @@ _G.ItemStack = function(name)
 	}
 end
 
-dofile("builtin/game/mbr_loot.lua")
+dofile("games/moonbrook_ridge/mods/mbr_systems/mbr_loot.lua")
 
 describe("mbr.loot", function()
 

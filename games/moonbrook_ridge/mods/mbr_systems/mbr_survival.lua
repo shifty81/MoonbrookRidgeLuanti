@@ -29,7 +29,7 @@ local function init_player_data(name)
 	}
 end
 
-local clamp = mbr.utils.clamp
+local clamp = mbr.utils and mbr.utils.clamp or function(v, mn, mx) return math.max(mn, math.min(mx, v)) end
 
 -- Helper functions
 function mbr.survival.feed_player(player_name, amount)
@@ -59,7 +59,7 @@ function mbr.survival.register_food(itemname, def)
 	registered_foods[itemname] = def
 	core.register_craftitem(itemname, {
 		description = def.description or itemname,
-		inventory_image = def.texture or "heart.png",
+		inventory_image = def.texture or "[fill:16x16:#CC6633",
 		on_use = function(itemstack, user, pointed_thing)
 			if not user then return itemstack end
 			local name = user:get_player_name()
@@ -78,7 +78,7 @@ function mbr.survival.register_drink(itemname, def)
 	registered_drinks[itemname] = def
 	core.register_craftitem(itemname, {
 		description = def.description or itemname,
-		inventory_image = def.texture or "bubble.png",
+		inventory_image = def.texture or "[fill:16x16:#4488CC",
 		on_use = function(itemstack, user, pointed_thing)
 			if not user then return itemstack end
 			local name = user:get_player_name()
@@ -266,42 +266,5 @@ core.register_globalstep(function(dtime)
 	if do_damage then damage_timer = 0 end
 end)
 
--- Register basic food items
-mbr.survival.register_food("mbr:bread", {
-	description = "Bread",
-	hunger_restore = 25,
-	texture = "heart.png",
-})
-
-mbr.survival.register_food("mbr:apple", {
-	description = "Apple",
-	hunger_restore = 15,
-	texture = "heart.png",
-})
-
-mbr.survival.register_food("mbr:steak", {
-	description = "Steak",
-	hunger_restore = 40,
-	texture = "heart.png",
-})
-
--- Register basic drink items
-mbr.survival.register_drink("mbr:water_bottle", {
-	description = "Water Bottle",
-	thirst_restore = 30,
-	texture = "bubble.png",
-})
-
-mbr.survival.register_drink("mbr:juice", {
-	description = "Juice",
-	thirst_restore = 20,
-	texture = "bubble.png",
-})
-
--- Milk restores both thirst and some hunger
-mbr.survival.register_drink("mbr:milk", {
-	description = "Milk",
-	thirst_restore = 25,
-	hunger_restore = 5,
-	texture = "bubble.png",
-})
+-- Note: Food and drink items are registered by mbr_items mod
+-- using mbr.survival.register_food() and mbr.survival.register_drink().

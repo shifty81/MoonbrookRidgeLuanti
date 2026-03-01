@@ -123,7 +123,7 @@ end
 -- Helpers
 ---------------------------------------------------------------------------
 
-local clamp = mbr.utils.clamp
+local clamp = mbr.utils and mbr.utils.clamp or function(v, mn, mx) return math.max(mn, math.min(mx, v)) end
 
 --- Weighted-random pick from a { key = weight } table.
 local function weighted_pick(weights)
@@ -388,7 +388,7 @@ end
 core.register_craftitem("mbr:identify_scroll", {
 	description = core.colorize("#88DDFF", "Identify Scroll") ..
 		"\n" .. core.colorize("#888888", "Right-click an unidentified item to reveal its stats"),
-	inventory_image = "heart.png",
+	inventory_image = "[fill:16x16:#88DDFF",
 	stack_max = 99,
 	on_use = function(itemstack, user)
 		if not user then return itemstack end

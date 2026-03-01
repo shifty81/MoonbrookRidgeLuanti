@@ -51,7 +51,7 @@ _G.mbr = {loot = {
 	end,
 }}
 
-dofile("builtin/game/mbr_crafting.lua")
+dofile("games/moonbrook_ridge/mods/mbr_systems/mbr_crafting.lua")
 
 describe("mbr.crafting", function()
 

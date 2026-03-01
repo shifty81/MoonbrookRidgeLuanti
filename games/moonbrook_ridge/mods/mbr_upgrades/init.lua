@@ -763,14 +763,8 @@ core.register_on_player_receive_fields(function(player, formname, fields)
 	inv:set_stack("tool", 1, new_stack)
 
 	-- Particle effect if available
-	if mbr and mbr.particles then
-		mbr.particles({
-			pos = pos,
-			amount = 20,
-			time = 0.5,
-			minvel = {x = -1, y = 1, z = -1},
-			maxvel = {x = 1, y = 3, z = 1},
-		})
+	if mbr and mbr.particles and mbr.particles.spawn then
+		mbr.particles.spawn(pos, "sparkle")
 	end
 
 	local type_label = TOOL_TYPE_LABELS[info.type] or info.type
